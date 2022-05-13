@@ -7,3 +7,14 @@ se login accetto:
 		account creati con psw da cambiare
 		ogni utente crea un account
 privilegi per certe matricole. analisi sui dati.
+
+
+
+
+
+Proposta progettazione IN ADDON
+USER(matricola,pwd,privilegio,domandeDate,domandeGiuste)
+DOMANDA(idDomanda,domanda,risposta,numeroProposte,numeroCorrette)
+
+Così utilizziamo domandeDate e domandeGiuste in user per stampare la classifica.
+E invece utilizziamo numeroProposte e numeroCorrette in DOMANDA per l'analisi statistica.
