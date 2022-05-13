@@ -1,0 +1,9 @@
+scoreboard?
+controllo che la domanda successiva sia diversa?
+login? si/no
+se login accetto:
+	solo matricola
+	matricola - password
+		account creati con psw da cambiare
+		ogni utente crea un account
+privilegi per certe matricole. analisi sui dati.

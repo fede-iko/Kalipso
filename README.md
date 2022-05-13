@@ -8,6 +8,7 @@ User stories:
 - The solution is shown.
 - User can get another sentence
 
+
 # POSSIBLE CHANGE
 users passwords are sent to the user's email.
 User stories:
@@ -25,3 +26,4 @@ User stories:
 
 # DUE DATE
 27-06-2022
+
