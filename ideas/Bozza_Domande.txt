@@ -18,3 +18,16 @@ DOMANDA(idDomanda,domanda,risposta,numeroProposte,numeroCorrette)
 
 Così utilizziamo domandeDate e domandeGiuste in user per stampare la classifica.
 E invece utilizziamo numeroProposte e numeroCorrette in DOMANDA per l'analisi statistica.
+
+
+# POSSIBLE CHANGE
+Users passwords are sent to the user's email.
+User stories:
+- User logged in
+- On first login a password change is required from the user
+
+- User completes a sentence
+- Tries counter incremented by one
+- Correct answer increments correctTries counter by one
+
+- User can check the scoreboard at any time
