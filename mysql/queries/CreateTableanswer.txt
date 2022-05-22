@@ -1,0 +1,7 @@
+CREATE TABLE answer (
+    id_sentence SMALLINT NOT NULL,
+    answer_text varchar(100),
+	isCorrect BOOLEAN,
+	PRIMARY KEY(id_sentence, answer_text),
+    FOREIGN KEY (id_sentence) REFERENCES sentence(id_sentence)
+    );
