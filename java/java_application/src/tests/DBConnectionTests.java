@@ -16,14 +16,14 @@ public class DBConnectionTests {
 	
 	DBConnection db = null;
 
-	public DBConnection getValidConnection() throws SQLException {		
-		return new DBConnection();		
+	public DBConnection getValidTestConnection() throws SQLException {		
+		return new DBConnection("jdbc:mysql://localhost/literature_game_test");		
 	}
 	
 	@BeforeEach
 	void setUp() {
 		try {
-			db = getValidConnection();
+			db = getValidTestConnection();
 		} catch (SQLException e) {
 			System.out.println("Cannot open connection!");
 		}
@@ -42,7 +42,7 @@ public class DBConnectionTests {
 	@Test
 	public void good_credentials_to_database() throws SQLException {
 					
-		getValidConnection();
+		getValidTestConnection();
 		
 	}
 	
@@ -76,9 +76,9 @@ public class DBConnectionTests {
 	@Test
 	public void good_update() throws SQLException{
 		
-		String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
+		//String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
 		
-		assertTrue(db.updateQuery(query));		
+		//db.updateQuery(query);		
 	}
 	
 	@Test
@@ -86,15 +86,19 @@ public class DBConnectionTests {
 		
 		String query = "UPDATE flowers SET n_total = n_total + 1 WHERE id_sentence = 1;";		
 		
-		assertFalse(db.updateQuery(query));		
+		assertThrows(SQLException.class,
+				()->{
+					db.updateQuery(query);
+				});		
 	}
 	
 	@Test
-	public void good_delete() throws SQLException{
+	public void good_delete() throws SQLException {
 		
-		String query = "DELETE FROM sentence WHERE id_sentence = 1;";
+		//String query = "DELETE FROM answer WHERE id_sentence = 1;";
 		
-		assertTrue(db.deleteQuery(query));		
+		
+		//db.deleteQuery(query);		
 	}
 	
 	@Test
@@ -102,7 +106,10 @@ public class DBConnectionTests {
 		
 		String query = "DELETE FROM roses WHERE id_sentence = 1213;";
 		
-		assertTrue(db.deleteQuery(query));
+		assertThrows(SQLException.class,
+				()->{
+					db.deleteQuery(query);	
+				});
 	}	
 	
 }
