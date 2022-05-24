@@ -45,7 +45,7 @@ public class DBConnection {
 	}
 	
 	public void updateQuery(String query) throws SQLException {		
-		conn.createStatement().executeUpdate(query);		
+		conn.createStatement().executeUpdate(query);	
 	}
 	
 	public void deleteQuery(String query) throws SQLException {
