@@ -1,4 +1,4 @@
-CREATE DATABASE letteratura;
+CREATE DATABASE literature_game;
 
 CREATE TABLE sentence (
     id_sentence SMALLINT NOT NULL AUTO_INCREMENT,
