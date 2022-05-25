@@ -112,7 +112,7 @@ public class DBConnectionTests {
 	}	
 	
 	@Test
-	public void good_insert() {
+	public void good_insert() throws SQLException {
 		
 		String query = "INSERT INTO sentence (sentence_text) VALUES('Ei fu test');";
 		
@@ -128,6 +128,17 @@ public class DBConnectionTests {
 				()->{
 					db.insertQuery(query);
 				});
+	}
+	
+	@Test
+	public void multi_good_insert() throws SQLException{
+		
+		String query = "INSERT INTO sentence (sentence_text) VALUES"
+				+ "('Ei fu test'),"
+				+ "('Blabl balòl'),"
+				+ "('sadsalkj');";
+		
+		db.insertQuery(query);	
 	}
 	
 }

@@ -40,6 +40,12 @@ public class DBConnection {
 		return this.conn;
 	}
 	
+	public void insertQuery(String query) throws SQLException{   		
+		if(conn.createStatement().executeUpdate(query)<1) {
+			throw new SQLException();
+		}		
+	}
+	
 	public ResultSet selectQuery(String query) throws SQLException {					
 		return conn.createStatement().executeQuery(query);
 	}
