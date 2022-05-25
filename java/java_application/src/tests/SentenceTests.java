@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 import application.Sentence;
@@ -9,33 +11,35 @@ import application.Sentence;
 public class SentenceTests {
 
 	@Test
-	public void create_answers() {
+	public void create_answers() throws SQLException  {
 		
-		Sentence s = new Sentence(1,"Ei fu siccome immobile");
+		Sentence s = new Sentence(1,"Ei fu siccome immobile",0,0);						
+			
+		assertNotEquals(s.getAnswers().size(),0);
 		
-		assertEquals(s.getAnswers.size(), 0);
-		
-		s.createAnswers();
-		
-		assertNotEquals(s.getAnswers.size(),0);
 	}
 	
 	@Test
-	public void correct_answer() {
+	public void correct_answer() throws SQLException {
 		
-		Sentence s = new Sentence(1,"Ei fu");
+		Sentence s = new Sentence(1,"Ei fu",0,0);		
 		
-		s.createAnswers();
-		
-		assertTrue(s.IsCorrect("siccome immobile"));		
+		assertTrue(s.isCorrect("siccome immobile"));		
 	}
 	
 	@Test
-	public void wrong_answer() {
-		Sentence s = new Sentence(1,"Ei fu");
+	public void wrong_answer() throws SQLException {
+		Sentence s = new Sentence(1,"Ei fu",0,0);
 		
+		assertFalse(s.isCorrect("asadsa asdsada"));
+	}
+	
+	@Test
+	public void get_correct_answer() throws SQLException {
+		Sentence s = new Sentence(1,"Ei fu",0,0);
 		s.createAnswers();
 		
-		assertFalse(s.IsCorrect("asadsa asdsada"));
+		assertEquals(s.getCorrectAnswer(),"siccome immobile");
+		
 	}
 }
