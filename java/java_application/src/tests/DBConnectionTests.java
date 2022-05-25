@@ -40,14 +40,14 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void good_credentials_to_database() throws SQLException {
+	public void good_credentials_to_database() throws SQLException  {
 					
 		getValidTestConnection();
 		
 	}
 	
 	@Test
-	public void wrong_credentials_to_database() throws SQLException {		
+	public void wrong_credentials_to_database() {		
 		String user = "wrongUser";
 		String pwd = "wrongPwd";		
 		assertThrows(SQLException.class,
@@ -64,7 +64,7 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void wrong_select_statement() throws SQLException {
+	public void wrong_select_statement()  {
 		String query = "SELECT * FROM wrong_table WHERE wrong_field = 1";
 		
 		assertThrows(SQLException.class,
@@ -74,7 +74,7 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void good_update() throws SQLException{
+	public void good_update() {
 		
 		//String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
 		
@@ -82,7 +82,7 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void wrong_update() throws SQLException{
+	public void wrong_update() {
 		
 		String query = "UPDATE flowers SET n_total = n_total + 1 WHERE id_sentence = 1;";		
 		
@@ -95,14 +95,13 @@ public class DBConnectionTests {
 	@Test
 	public void good_delete() throws SQLException {
 		
-		//String query = "DELETE FROM answer WHERE id_sentence = 1;";
+		String query = "DELETE FROM answer WHERE id_sentence = 1;";		
 		
-		
-		//db.deleteQuery(query);		
+		db.deleteQuery(query);		
 	}
 	
 	@Test
-	public void wrong_delete() throws SQLException{
+	public void wrong_delete() {
 		
 		String query = "DELETE FROM roses WHERE id_sentence = 1213;";
 		
@@ -111,5 +110,24 @@ public class DBConnectionTests {
 					db.deleteQuery(query);	
 				});
 	}	
+	
+	@Test
+	public void good_insert() {
+		
+		String query = "INSERT INTO sentence (sentence_text) VALUES('Ei fu test');";
+		
+		db.insertQuery(query);		
+	}
+	
+	@Test
+	public void wrong_insert() throws SQLException{
+		
+		String query = "INSERT INTO flowers (sentence_test) VALUES('aslkdja');";
+		
+		assertThrows(SQLException.class,
+				()->{
+					db.insertQuery(query);
+				});
+	}
 	
 }
