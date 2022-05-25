@@ -27,7 +27,7 @@ public class SentencesContainerTests {
 		
 		Sentence s = sc.getSentence(0);
 		
-		assertEqual(s.getId,0);
+		assertEqual(s.getId,1);
 		assertEqual(s.getSentenceText,"Ei fu");
 	}
 	
@@ -38,7 +38,7 @@ public class SentencesContainerTests {
 		
 		assertTrue(sc.addSentence(new Sentence(1,"Ei fu")));
 		
-		assertThrows(SentenceIndexNotValidException.class,sc.getSentence(15));		
+		assertThrows(IndexOutOfBoundsException.class,sc.getSentence(15));		
 	}
 	
 	@Test
