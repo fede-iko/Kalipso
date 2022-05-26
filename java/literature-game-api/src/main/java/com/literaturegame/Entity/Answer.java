@@ -1,67 +1,68 @@
 package com.literaturegame.Entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "risposte")
+@Table(name = "answer")
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_risposta;
+    private int id_answer;
 
-    private String risposta_testo;
+    private String answer_text;
 
     @Column(nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean corretta;
+    private boolean isCorrect;
 
     @ManyToOne
-    @JoinColumn(name = "id_domanda")
+    @JoinColumn(name = "id_sentence")
     @JsonIgnore
     private Sentence sentence;
 
     public Answer(){}
 
-    public Answer(int id_risposta, String testo_risposta, boolean corretta, Sentence sentence) {
-        this.id_risposta = id_risposta;
-        this.risposta_testo = testo_risposta;
-        this.corretta = corretta;
+    public Answer(int id_answer, String answer_text, boolean isCorrect, Sentence sentence) {
+        this.id_answer = id_answer;
+        this.answer_text = answer_text;
+        this.isCorrect = isCorrect;
         this.sentence = sentence;
     }
 
-    public int getId_risposta() {
-        return id_risposta;
-    }
+	public int getId_answer() {
+		return id_answer;
+	}
 
-    public String getTesto_risposta() {
-        return risposta_testo;
-    }
+	public void setId_answer(int id_answer) {
+		this.id_answer = id_answer;
+	}
 
-    public boolean isCorretta() {
-        return corretta;
-    }
+	public String getAnswer_text() {
+		return answer_text;
+	}
 
-    public Sentence getSentence() {
-        return sentence;
-    }
+	public void setAnswer_text(String answer_text) {
+		this.answer_text = answer_text;
+	}
 
-    public void setId_risposta(int id_risposta) {
-        this.id_risposta = id_risposta;
-    }
+	public boolean isCorrect() {
+		return isCorrect;
+	}
 
-    public void setTesto_risposta(String testo_risposta) {
-        this.risposta_testo = testo_risposta;
-    }
+	public void setCorrect(boolean isCorrect) {
+		this.isCorrect = isCorrect;
+	}
 
-    public void setCorretta(boolean corretta) {
-        this.corretta = corretta;
-    }
+	public Sentence getSentence() {
+		return sentence;
+	}
 
-    public void setSentence(Sentence sentence) {
-        this.sentence = sentence;
-    }
+	public void setSentence(Sentence sentence) {
+		this.sentence = sentence;
+	}
+
+    
 }
