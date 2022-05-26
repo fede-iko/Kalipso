@@ -12,18 +12,20 @@ import org.junit.jupiter.api.Test;
 
 import application.DBConnection;
 
+
 public class DBConnectionTests {	
 	
 	DBConnection db = null;
 
 	public DBConnection getValidTestConnection() throws SQLException {		
-		return new DBConnection("jdbc:mysql://localhost/literature_game_test");		
+		return new DBConnection();		
 	}
 	
 	@BeforeEach
 	void setUp() {
 		try {
 			db = getValidTestConnection();
+			db.getConnection().createStatement().execute("START TRANSACTION;");
 		} catch (SQLException e) {
 			System.out.println("Cannot open connection!");
 		}
@@ -32,6 +34,7 @@ public class DBConnectionTests {
 	@AfterEach
 	void tearDown() {
 		try {
+			db.getConnection().createStatement().execute("ROLLBACK;");
 			db.getConnection().close();
 			db = null;
 		} catch (SQLException e) {
@@ -40,7 +43,7 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void good_credentials_to_database() throws SQLException  {
+	public void good_connection_to_database() throws SQLException  {
 					
 		getValidTestConnection();
 		
@@ -74,11 +77,11 @@ public class DBConnectionTests {
 	}
 	
 	@Test
-	public void good_update() {
+	public void good_update() throws SQLException {
 		
-		//String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
+		String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
 		
-		//db.updateQuery(query);		
+		db.updateQuery(query);		
 	}
 	
 	@Test

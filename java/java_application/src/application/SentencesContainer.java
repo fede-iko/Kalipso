@@ -1,15 +1,37 @@
 package application;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class SentencesContainer {
 	private List<Sentence> sentences;
 	
-	public SentencesContainer() {
-		
+	public SentencesContainer() throws SQLException {
+		sentences = new ArrayList<Sentence>();		
 	}
 	
+	public List<Sentence> getSentences(){
+		return this.sentences;
+	}
+	
+	public void createSentences() throws SQLException {
+		
+		DBConnection db = new DBConnection();
+		String query = "SELECT * FROM sentence;";		
+		ResultSet rs = db.selectQuery(query);
+		
+		while(rs.next()) {
+			int idSentence = rs.getInt(1);
+			String sentenceText = rs.getString(2);
+			int nGuessed = rs.getInt(3);
+			int nTotal = rs.getInt(4);
+			sentences.add(new Sentence(idSentence,sentenceText,nGuessed,nTotal));
+		}
+	}
+
 	public boolean addSentence(Sentence s) {
 		if(s!=null) {
 			this.sentences.add(s);

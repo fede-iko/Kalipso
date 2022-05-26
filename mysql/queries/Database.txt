@@ -1,5 +1,7 @@
 CREATE DATABASE literature_game;
 
+USE literature_game;
+
 CREATE TABLE sentence (
     id_sentence SMALLINT NOT NULL AUTO_INCREMENT,
     sentence_text varchar(100),

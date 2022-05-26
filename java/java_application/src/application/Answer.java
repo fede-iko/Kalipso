@@ -2,17 +2,17 @@ package application;
 
 public class Answer {
 
-	private short id_sentence;
+	private int id_sentence;
 	private String answer_text;
 	private boolean isCorrect;
 	
-	public Answer(short id_sentence,String answer_text,boolean isCorrect) {
+	public Answer(int id_sentence,String answer_text,boolean isCorrect) {
 		this.id_sentence = id_sentence;
 		this.answer_text = answer_text;
 		this.isCorrect = isCorrect;
 	}
 	
-	public short getIdSentence() {
+	public int getIdSentence() {
 		return this.id_sentence;
 	}
 	

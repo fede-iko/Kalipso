@@ -9,7 +9,6 @@ public class AnswerTests {
 	@Test
 	public void generic_test() {
 		assertTrue(true);
-		
 		//TODO
 	}
 	

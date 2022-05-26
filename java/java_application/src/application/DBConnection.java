@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBConnection {
 	
@@ -14,13 +13,6 @@ public class DBConnection {
 	Connection conn = null;
 	
 	public DBConnection() throws SQLException {		
-		user = "root";
-		pwd = null;			
-		createConnection();
-	}
-	
-	public DBConnection(String url) throws SQLException{
-		this.url = url; 
 		user = "root";
 		pwd = null;			
 		createConnection();
@@ -40,11 +32,6 @@ public class DBConnection {
 		return this.conn;
 	}
 	
-	public void insertQuery(String query) throws SQLException{   		
-		if(conn.createStatement().executeUpdate(query)<1) {
-			throw new SQLException();
-		}		
-	}
 	
 	public ResultSet selectQuery(String query) throws SQLException {					
 		return conn.createStatement().executeQuery(query);
@@ -58,4 +45,9 @@ public class DBConnection {
 		conn.createStatement().executeUpdate(query);
 	}
 	
+	public void insertQuery(String query) throws SQLException{   		
+		if(conn.createStatement().executeUpdate(query)<1) {
+			throw new SQLException();
+		}		
+	}
 }
