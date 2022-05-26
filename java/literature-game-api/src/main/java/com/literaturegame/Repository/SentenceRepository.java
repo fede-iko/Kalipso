@@ -1,9 +1,9 @@
 package com.literaturegame.Repository;
 
-import com.literaturegame.Entity.Sentence;
+import com.literaturegame.Entity.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SentenceRepository extends JpaRepository<Sentence, String> {
+public interface SentenceRepository extends JpaRepository<Answer, Integer> {
 }

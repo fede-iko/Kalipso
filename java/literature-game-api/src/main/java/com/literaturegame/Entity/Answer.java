@@ -1,60 +1,53 @@
 package com.literaturegame.Entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sentence")
+@Table(name = "answer")
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_sentence;
 
-    private String sentence_text;
+    private String answer_text;
 
-    private int n_guessed;
-
-    private int n_total;
+    @Column(nullable = false)
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean isCorrect;
 
     public Answer(){
 
     }
 
-    public Answer(String sentence_text, int n_guessed, int n_total){
-        this.sentence_text = sentence_text;
-        this.n_guessed = n_guessed;
-        this.n_total = n_total;
+    public Answer(String answer_text, boolean isCorrect){
+        this.answer_text = answer_text;
+        this.isCorrect = isCorrect;
     }
 
     public void setId_sentence(int id_sentence) {
         this.id_sentence = id_sentence;
     }
 
-    public void setSentence_text(String sentence_text) {
-        this.sentence_text = sentence_text;
+    public void setAnswer_text(String answer_text) {
+        this.answer_text = answer_text;
     }
 
-    public void setN_guessed(int n_guessed) {
-        this.n_guessed = n_guessed;
-    }
-
-    public void setN_total(int n_total) {
-        this.n_total = n_total;
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
     }
 
     public int getId_sentence() {
         return id_sentence;
     }
 
-    public String getSentence_text() {
-        return sentence_text;
+    public boolean isCorrect() {
+        return isCorrect;
     }
 
-    public int getN_guessed() {
-        return n_guessed;
-    }
-
-    public int getN_total() {
-        return n_total;
+    public String getAnswer_text() {
+        return answer_text;
     }
 }

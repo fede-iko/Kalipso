@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 public class AnswerController {
 
+    @Autowired
     AnswerRepository answerRepository;
 
     @CrossOrigin
