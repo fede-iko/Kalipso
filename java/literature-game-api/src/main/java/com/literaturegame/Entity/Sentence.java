@@ -1,17 +1,18 @@
 package com.literaturegame.Entity;
 
 import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
-@Table(name = "domanda")
+@Table(name = "sentence")
 public class Sentence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_domanda;
+    private int id_sentence;
 
-    private String domanda_text;
+    private String sentence_text;
 
     @OneToMany(mappedBy = "sentence")
     private List<Answer> answers;
@@ -20,31 +21,33 @@ public class Sentence {
 
     }
 
-    public Sentence(String testo_domanda){
-        this.domanda_text = testo_domanda;
+    public Sentence(String sentence_text){
+        this.sentence_text = sentence_text;
     }
 
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
+	public int getId_sentence() {
+		return id_sentence;
+	}
 
-    public List<Answer> getAnswers() {
-        return answers;
-    }
+	public void setId_sentence(int id_sentence) {
+		this.id_sentence = id_sentence;
+	}
 
-    public void setId_domanda(int id_domanda) {
-        this.id_domanda = id_domanda;
-    }
+	public String getSentence_text() {
+		return sentence_text;
+	}
 
-    public int getId_domanda() {
-        return id_domanda;
-    }
+	public void setSentence_text(String sentence_text) {
+		this.sentence_text = sentence_text;
+	}
 
-    public void setTesto_domanda(String testo_domanda) {
-        this.domanda_text = testo_domanda;
-    }
+	public List<Answer> getAnswers() {
+		return answers;
+	}
 
-    public String getTesto_domanda() {
-        return domanda_text;
-    }
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
+    
 }
