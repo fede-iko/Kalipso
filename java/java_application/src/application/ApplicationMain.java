@@ -17,8 +17,7 @@ public class ApplicationMain {
 		out("PREMI INVIO PER CONTINUARE");
 		in(scan);
 		
-		out("Inserisci il tuo nome:");
-		String userName = in(scan);
+		String userName = notEmptyIn(scan,"Inserisci il tuo nome:");
 		
 		clear();
 		
@@ -38,19 +37,19 @@ public class ApplicationMain {
 		int nGuessed = 0;
 		int nTotal = 0;
 		for(Sentence s: sc.getSentences()) {
-			out("Frase numero "+(nTotal+1));
-			out(s.getSentenceText());
-			out("Completala:");
-			if(s.isCorrect(in(scan))) {
+			String msg = "Frase numero "+(nTotal+1)+"\n\n";
+			msg+=s.getSentenceText();
+			msg+="\n\nCompletala:";			
+			if(s.isCorrect(notEmptyIn(scan,msg))) {
 				nGuessed++;
-				out("Risposta corretta!");				
+				out("\nRisposta corretta!");				
 			}else {				
-				out("Risposta errata!");
-				out("La risposta giusta era:");
+				out("\nRisposta errata!");
+				out("La risposta giusta era:\n");
 				out(s.getCorrectAnswer());
 			}
 			nTotal++;
-			out("Premi invio per continuare!");
+			out("\n\nPremi invio per continuare!");
 			in(scan);
 			clear();
 		}
@@ -73,6 +72,18 @@ public class ApplicationMain {
 		System.exit(0);
 	}
 	
+	public static String notEmptyIn(Scanner sc,String msg) {
+		String userAnswer = "";
+		while(userAnswer.equals("") || userAnswer.equals(" ")) {			
+			out(msg);
+			userAnswer = in(sc);
+			if(userAnswer.equals("") || userAnswer.equals(" ")) {
+				clear();
+				out("Inserisci un'input valido!");
+			}
+		}
+		return userAnswer;
+	}
 	
 	public static void out(String msg) {
 		System.out.println(msg);
@@ -82,7 +93,9 @@ public class ApplicationMain {
 		return sc.nextLine();		
 	}
 	
-	public final static void clear(){  
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+	public final static void clear(){
+		for(int i = 0 ; i < 100;i++) {
+			System.out.println("\n");
+		}		
 	} 
 }
