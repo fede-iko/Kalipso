@@ -24,10 +24,11 @@ public class AnswerController {
     public List<Answer> findAnswers(){
         return answerRepository.findAll();
     }
-    
-    @GetMapping("/{idSentence}")
+
+    /*@CrossOrigin
+    @GetMapping("/answer/{idSentence}")
     public Collection<Answer> getAnswersBySentenceId(@PathVariable int idSentence){
     	return answerRepository.findBySentenceId(idSentence);
-    }
+    }*/
 
 }

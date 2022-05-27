@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 27, 2022 alle 08:51
+-- Creato il: Mag 27, 2022 alle 09:44
 -- Versione del server: 10.4.21-MariaDB
 -- Versione PHP: 8.0.12
 
@@ -24,48 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `domanda`
+-- Struttura della tabella `answer`
 --
 
-CREATE TABLE `domanda` (
-  `id_domanda` int(11) NOT NULL,
-  `domanda_text` text NOT NULL
+CREATE TABLE `answer` (
+  `id_answer` int(11) NOT NULL,
+  `id_sentence` int(11) NOT NULL,
+  `answer_text` text NOT NULL,
+  `is_correct` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dump dei dati per la tabella `domanda`
+-- Dump dei dati per la tabella `answer`
 --
 
-INSERT INTO `domanda` (`id_domanda`, `domanda_text`) VALUES
-(1, 'Ei fu'),
-(2, 'Tanto gentile e'),
-(3, 'Nel mezzo del cammin di nostra vita'),
-(4, 'La donzelletta vien dalla campagna'),
-(5, 'Sempre caro mi fu'),
-(6, 'Tu non altro che il canto'),
-(7, 'La nebbia a gl\'irti colli'),
-(8, 'Si sta come d\'autunno'),
-(9, 'Silvia, rimembri ancora'),
-(10, 'Gemmea l\'aria, il sole così chiaro');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `risposte`
---
-
-CREATE TABLE `risposte` (
-  `id_risposta` int(11) NOT NULL,
-  `id_domanda` int(11) NOT NULL,
-  `risposta_testo` text NOT NULL,
-  `corretta` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `risposte`
---
-
-INSERT INTO `risposte` (`id_risposta`, `id_domanda`, `risposta_testo`, `corretta`) VALUES
+INSERT INTO `answer` (`id_answer`, `id_sentence`, `answer_text`, `is_correct`) VALUES
 (1, 1, 'siccome immobile', 1),
 (2, 2, 'tanto onesta pare', 1),
 (3, 3, 'mi ritrovai per una selva oscura', 1),
@@ -77,48 +50,75 @@ INSERT INTO `risposte` (`id_risposta`, `id_domanda`, `risposta_testo`, `corretta
 (9, 9, 'quel tempo della tua vita mortale', 1),
 (10, 10, 'che tu ricerchi gli albicocchi in fiore', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `sentence`
+--
+
+CREATE TABLE `sentence` (
+  `id_sentence` int(11) NOT NULL,
+  `sentence_text` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `sentence`
+--
+
+INSERT INTO `sentence` (`id_sentence`, `sentence_text`) VALUES
+(1, 'Ei fu'),
+(2, 'Tanto gentile e'),
+(3, 'Nel mezzo del cammin di nostra vita'),
+(4, 'La donzelletta vien dalla campagna'),
+(5, 'Sempre caro mi fu'),
+(6, 'Tu non altro che il canto'),
+(7, 'La nebbia a gl\'irti colli'),
+(8, 'Si sta come d\'autunno'),
+(9, 'Silvia, rimembri ancora'),
+(10, 'Gemmea l\'aria, il sole così chiaro');
+
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `domanda`
+-- Indici per le tabelle `answer`
 --
-ALTER TABLE `domanda`
-  ADD PRIMARY KEY (`id_domanda`);
+ALTER TABLE `answer`
+  ADD PRIMARY KEY (`id_answer`),
+  ADD KEY `id_domanda` (`id_sentence`);
 
 --
--- Indici per le tabelle `risposte`
+-- Indici per le tabelle `sentence`
 --
-ALTER TABLE `risposte`
-  ADD PRIMARY KEY (`id_risposta`),
-  ADD KEY `id_domanda` (`id_domanda`);
+ALTER TABLE `sentence`
+  ADD PRIMARY KEY (`id_sentence`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT per la tabella `domanda`
+-- AUTO_INCREMENT per la tabella `answer`
 --
-ALTER TABLE `domanda`
-  MODIFY `id_domanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `answer`
+  MODIFY `id_answer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT per la tabella `risposte`
+-- AUTO_INCREMENT per la tabella `sentence`
 --
-ALTER TABLE `risposte`
-  MODIFY `id_risposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `sentence`
+  MODIFY `id_sentence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `risposte`
+-- Limiti per la tabella `answer`
 --
-ALTER TABLE `risposte`
-  ADD CONSTRAINT `id_domanda` FOREIGN KEY (`id_domanda`) REFERENCES `domanda` (`id_domanda`);
+ALTER TABLE `answer`
+  ADD CONSTRAINT `id_domanda` FOREIGN KEY (`id_sentence`) REFERENCES `sentence` (`id_sentence`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
