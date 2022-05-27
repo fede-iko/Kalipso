@@ -1,41 +1,55 @@
-var questions = [];
+var sentences = [];
 
-$("#start-button").click(function() {
-
+$(document).ready(function() {
     $.ajax({
         url: "http://localhost:8080/sentence",
         method: "GET",
         success: function(response) {
-            questions = response;
-            $("#start-button").remove();
-            game_started();
+            sentences = response;
         }
-
     });
 
-});
+    $("#start-button").click(function() {
+        if (sentences.length == 0) {
+            return;
+        }
+        $("#start-button").remove();
+        next_sentence();
+    });
 
-var page = 0;
+    var page = 0;
 
-function game_started() {
-    if (page == questions.length) {
-        game_ended();
-        return;
+    function next_sentence() {
+        if (page == sentences.length) {
+            game_ended();
+            return;
+        }
+
+        $(".sentences-container").empty();
+        let str =
+            '<div class="input-group mb-3">' +
+            '<span class="input-group-text" id="basic-addon3">' + sentences[page].sentence_text + '...</span>' +
+            '<input type="text" class="form-control" id="completed_sentence" placeholder="Completa la frase...">' +
+            '<button class="btn btn-success" id="pageNext"><i class="fa-solid fa-arrow-right"></i></button></div>';
+
+        $(".sentences-container").append(str);
+
+        page++;
+
     }
 
-    $(".questions-container").empty();
-    $(".questions-container").append("<p>" + questions[page].id_sentence + " | " + questions[page].sentence_text + "</p>");
-    $(".questions-container").append("<button id='pageNext'> Next question </button>");
+    function game_ended() {
+        $(".sentences-container").empty();
+        $(".sentences-container").append("<p> GIOCO FINITO! </p>");
+    }
 
-    page++;
+    $(".sentences-container").unbind().on("click", "#pageNext", function() {
+        if ($("#completed_sentence").val() == "") {
+            alert("Inserisci la frase completa!");
+            return;
+        }
 
-}
+        next_sentence();
+    });
 
-function game_ended() {
-    $(".questions-container").empty();
-    $(".questions-container").append("<p> GIOCO FINITO! </p>");
-}
-
-$(".questions-container").click(("#pageNext"), function() {
-    game_started();
 });
