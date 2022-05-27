@@ -16,7 +16,7 @@ public class Answer {
 
     @Column(nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean isCorrect;
+    private boolean is_correct;
 
     @ManyToOne
     @JoinColumn(name = "id_sentence")
@@ -28,7 +28,7 @@ public class Answer {
     public Answer(int id_answer, String answer_text, boolean isCorrect, Sentence sentence) {
         this.id_answer = id_answer;
         this.answer_text = answer_text;
-        this.isCorrect = isCorrect;
+        this.is_correct = isCorrect;
         this.sentence = sentence;
     }
 
@@ -49,11 +49,11 @@ public class Answer {
 	}
 
 	public boolean isCorrect() {
-		return isCorrect;
+		return is_correct;
 	}
 
 	public void setCorrect(boolean isCorrect) {
-		this.isCorrect = isCorrect;
+		this.is_correct = isCorrect;
 	}
 
 	public Sentence getSentence() {
