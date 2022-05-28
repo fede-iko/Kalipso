@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `game_literature`
+-- Database: literature_game
 --
 
 -- --------------------------------------------------------
@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Struttura della tabella `answer`
 --
+CREATE DATABASE literature_game;
+USE literature_game;
 
 CREATE TABLE `answer` (
   `id_answer` int(11) NOT NULL,
