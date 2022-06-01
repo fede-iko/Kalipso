@@ -79,7 +79,7 @@ public class DBConnectionTests {
 	@Test
 	public void good_update() throws SQLException {
 		
-		String query = "UPDATE sentence SET n_total = n_total + 1 WHERE id_sentence = 1;";
+		String query = "UPDATE sentence SET sentence_text = 'Franco' WHERE id_sentence = 1;";
 		
 		db.updateQuery(query);		
 	}

@@ -20,15 +20,13 @@ public class SentencesContainer {
 	public void createSentences() throws SQLException {
 		
 		DBConnection db = new DBConnection();
-		String query = "SELECT * FROM sentence;";		
+		String query = "SELECT id_sentence,sentence_text FROM sentence;";		
 		ResultSet rs = db.selectQuery(query);
 		
 		while(rs.next()) {
-			int idSentence = rs.getInt(1);
-			String sentenceText = rs.getString(2);
-			int nGuessed = rs.getInt(3);
-			int nTotal = rs.getInt(4);
-			sentences.add(new Sentence(idSentence,sentenceText,nGuessed,nTotal));
+			int idSentence = rs.getInt("id_sentence");
+			String sentenceText = rs.getString("sentence_text");			
+			sentences.add(new Sentence(idSentence,sentenceText));
 		}
 	}
 

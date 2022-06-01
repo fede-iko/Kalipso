@@ -25,7 +25,7 @@ public class SentencesContainerTests {
 		
 		SentencesContainer sc = new SentencesContainer();
 		
-		assertTrue(sc.addSentence(new Sentence(1,"Ei fu",0,0)));
+		assertTrue(sc.addSentence(new Sentence(1,"Ei fu")));
 		
 		assertEquals(sc.getSentences().size(),1);
 	}
@@ -34,7 +34,7 @@ public class SentencesContainerTests {
 	public void good_get_sentence() throws SQLException {
 		SentencesContainer sc = new SentencesContainer();
 		
-		assertTrue(sc.addSentence(new Sentence(1,"Ei fu",0,0)));
+		assertTrue(sc.addSentence(new Sentence(1,"Ei fu")));
 		
 		Sentence s = sc.getSentence(0);
 		
@@ -47,7 +47,7 @@ public class SentencesContainerTests {
 		
 		SentencesContainer sc = new SentencesContainer();
 		
-		assertTrue(sc.addSentence(new Sentence(1,"Ei fu",0,0)));
+		assertTrue(sc.addSentence(new Sentence(1,"Ei fu")));
 		
 		assertThrows(IndexOutOfBoundsException.class,
 				()->{
