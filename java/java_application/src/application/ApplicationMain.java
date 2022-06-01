@@ -1,14 +1,24 @@
 package application;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
-public class ApplicationMain {	
+public class ApplicationMain {
+	
+	public static final String ANSI_RESET = "\u001B[0m";
+	
+	public static final String ANSI_RED = "\u001B[31m";
+	
+	public static final String ANSI_GREEN = "\u001B[32m";
 	
 	public static void main(String[] args) {
 		
 		Scanner scan = new Scanner(System.in);
 		
+		clear();
 		out("Benvenuto nel gioco di cultura generale!");
 		out("REGOLE:");
 		out("- maiuscole e minuscole non vengono controllate");
@@ -17,7 +27,9 @@ public class ApplicationMain {
 		out("PREMI INVIO PER CONTINUARE");
 		in(scan);
 		
-		String userName = notEmptyIn(scan,"Inserisci il tuo nome:");
+		clear();
+		
+		String userName = notEmptyIn(scan,"Inserisci il tuo nome:");		
 		
 		clear();
 		
@@ -36,17 +48,23 @@ public class ApplicationMain {
 		
 		int nGuessed = 0;
 		int nTotal = 0;
+		
+		List<String[]> resultList = new ArrayList<String[]>();
+		
 		for(Sentence s: sc.getSentences()) {
 			String msg = "Frase numero "+(nTotal+1)+"\n\n";
-			msg+=s.getSentenceText();
-			msg+="\n\nCompletala:";			
-			if(s.isCorrect(notEmptyIn(scan,msg))) {
+			msg+=s.getSentenceText()+" "+getCensoredAnswer(s.getCorrectAnswer(),false);			
+			msg+="\n\nCompletala:";		
+			
+			String userAnswer = notEmptyIn(scan,msg);
+			
+			
+			
+			if(s.isCorrect(userAnswer)) {
 				nGuessed++;
-				out("\nRisposta corretta!");				
-			}else {				
-				out("\nRisposta errata!");
-				out("La risposta giusta era:\n");
-				out(s.getCorrectAnswer());
+				resultList.add(new String[]{s.getSentenceText(),s.getCorrectAnswer(),""});										
+			}else {
+				resultList.add(new String[]{s.getSentenceText(),s.getCorrectAnswer(),userAnswer});				
 			}
 			nTotal++;
 			out("\n\nPremi invio per continuare!");
@@ -54,16 +72,38 @@ public class ApplicationMain {
 			clear();
 		}
 		
-		out(userName+" hai completato il gioco!");
-		
-		out("Risultato:");
+		out(userName+" hai completato il gioco con un punteggio di:");
 		
 		float percent = (nGuessed * 100)/nTotal;
 		
-		out("Frasi completate correttamente: "+nGuessed+"/"+nTotal+" ("+percent+"%)");
+		out("Frasi completate correttamente: "+getAnsiPoints(nGuessed)+nGuessed+"/"+nTotal+" ("+percent+"%)"+ANSI_RESET);		
 		
+		out("\nRisultati:");
+		
+		int roundCounter = 1;
+		
+		for(String[] arr: resultList) {
+			String msg = roundCounter+" : "+arr[0]+"... ";
+			
+			if(arr[2]=="") {
+				msg+=arr[1]+" | "+ANSI_GREEN+" CORRETTA "+ANSI_RESET;
+			}else {
+				msg+=getCensoredAnswer(arr[1],true)+" | "+ANSI_RED+" SBAGLIATA "+ANSI_RESET+" , hai inserito: '"+arr[2]+"'";
+			}
+			out(msg);
+			roundCounter++;
+		}		
 		
 		scan.close();
+		
+	}
+	
+	public static String getAnsiPoints(int points) {
+		
+		if(points>5) {
+			return ANSI_GREEN;
+		}
+		return ANSI_RED;
 		
 	}
 	
@@ -85,6 +125,29 @@ public class ApplicationMain {
 		return userAnswer;
 	}
 	
+	public static String getCensoredAnswer(String answ,boolean randomCharactersShown) {
+		
+		String[] words = answ.split(" |'");
+		
+		String censoredAnswer = "";
+		
+		for(int i = 0 ; i < words.length; i++) {
+			
+			Random rand = new Random();
+			int randValue = rand.nextInt(words[i].length());
+			for(int j = 0 ; j < words[i].length(); j++) {
+				if(j==randValue && randomCharactersShown) {
+					censoredAnswer+=words[i].charAt(j);
+					continue;
+				}
+				censoredAnswer+="_";
+			}
+			censoredAnswer+= " ";			
+		}
+		
+		return censoredAnswer;
+	}
+	
 	public static void out(String msg) {
 		System.out.println(msg);
 	}
@@ -93,9 +156,22 @@ public class ApplicationMain {
 		return sc.nextLine();		
 	}
 	
-	public final static void clear(){
-		for(int i = 0 ; i < 100;i++) {
-			System.out.println("\n");
-		}		
+	public final static void clear(){		
+        try{
+            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+              
+            if(operatingSystem.contains("Windows")){        
+                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");                
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } else {            	
+                ProcessBuilder pb = new ProcessBuilder("clear");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } 
+        }catch(Exception e){
+            System.out.println(e);
+        }
+	    
 	} 
 }

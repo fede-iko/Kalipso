@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Struttura della tabella `answer`
 --
+DROP DATABASE literature_game;
 CREATE DATABASE literature_game;
 USE literature_game;
 

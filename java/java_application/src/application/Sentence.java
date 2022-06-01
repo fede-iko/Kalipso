@@ -8,20 +8,16 @@ import java.util.List;
 public class Sentence {
 
 	private int idSentence;
-	private String sentenceText;
-	private int nGuessed;
-	private int nTotal;
+	private String sentenceText;	
 	private List<Answer> answers;
 	
 	public Sentence() {
 		
 	}
 
-	public Sentence(int idSentence, String sentenceText, int nGuessed, int nTotal) throws SQLException {
+	public Sentence(int idSentence, String sentenceText) throws SQLException {
 		this.idSentence = idSentence;
 		this.sentenceText = sentenceText;
-		this.nGuessed = nGuessed;
-		this.nTotal = nTotal;
 		answers = new ArrayList<Answer>();
 		createAnswers();
 	}
@@ -34,14 +30,6 @@ public class Sentence {
 		return this.sentenceText;
 	}
 	
-	public int getNGuessed() {
-		return this.nGuessed;
-	}
-	
-	public int getNTotal() {
-		return this.nTotal;
-	}
-	
 	public List<Answer> getAnswers(){
 		return this.answers;
 	}
@@ -49,15 +37,15 @@ public class Sentence {
 	public void createAnswers() throws SQLException {
 		
 		DBConnection db = new DBConnection();		
-		String query = "SELECT * FROM answer WHERE id_sentence = "+this.idSentence+";";		
+		String query = "SELECT id_sentence,answer_text,is_correct FROM answer WHERE id_sentence = "+this.idSentence+";";		
 		ResultSet rs = db.selectQuery(query);
 		
 		boolean goodSelect = false;
 		
 		while(rs.next()) {
-			int idSentAnsw = rs.getInt(1);
-			String ansText = rs.getString(2);
-			boolean correct = rs.getBoolean(3);
+			int idSentAnsw = rs.getInt("id_sentence");
+			String ansText = rs.getString("answer_text");
+			boolean correct = rs.getBoolean("is_correct");
 			
 			answers.add(new Answer(idSentAnsw,ansText,correct));
 			goodSelect = true;
