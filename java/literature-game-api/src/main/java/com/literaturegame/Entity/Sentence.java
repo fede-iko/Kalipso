@@ -14,7 +14,7 @@ public class Sentence {
 
     private String sentence_text;
 
-    @OneToMany(mappedBy = "sentence")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "sentence")
     private List<Answer> answers;
 
     public Sentence(){
