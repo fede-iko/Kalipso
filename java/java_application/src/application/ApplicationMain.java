@@ -14,34 +14,36 @@ public class ApplicationMain {
 	
 	public static final String ANSI_GREEN = "\u001B[32m";
 	
+	public static final Scanner scan = new Scanner(System.in);
+	
 	public static void main(String[] args) {
+		printStartMenu();
 		
-		Scanner scan = new Scanner(System.in);
-		
-		clear();
-		out("Benvenuto nel gioco di cultura generale!");
-		out("REGOLE:");
-		out("- maiuscole e minuscole non vengono controllate");
-		out("- non aggiungere punti alla fine delle frasi");
-		out("- divertiti e impara!");
-		out("PREMI INVIO PER CONTINUARE");
-		in(scan);
-		
-		clear();
-		
-		String userName = notEmptyIn(scan,"Inserisci il tuo nome:");		
+		String userName = notEmptyIn("Inserisci il tuo nome:");		
 		
 		clear();
 		
 		out("Benvenuto "+userName);
+		do {
+			gameStart(userName);
+		}while(playAgain());
 		
+		clear();
+		exitProgram("Grazie per aver giocato con noi "+userName+"!");
+		
+		scan.close();
+		
+	}
+	
+	public static void gameStart(String userName) {
+		//FILL THE SENTENCES CONTAINER WITH ALL THE SENTENCES
 		SentencesContainer sc = null;
 		try {
 			sc = new SentencesContainer();
 			sc.createSentences();
 			sc.shuffleSentences();
 		} catch (SQLException e) {
-			exitProgram("Impossibile scaricare le domande!");
+			exitProgram("Impossibile scaricare le domande! Riavviare l'applicazione!");
 		}
 		
 		out("INIZIAMO!\n");
@@ -49,6 +51,7 @@ public class ApplicationMain {
 		int nGuessed = 0;
 		int nTotal = 0;
 		
+		//LIST WITH THE RESULT OF EACH ROUND
 		List<String[]> resultList = new ArrayList<String[]>();
 		
 		for(Sentence s: sc.getSentences()) {
@@ -56,9 +59,7 @@ public class ApplicationMain {
 			msg+=s.getSentenceText()+" "+getCensoredAnswer(s.getCorrectAnswer(),false);			
 			msg+="\n\nCompletala:";		
 			
-			String userAnswer = notEmptyIn(scan,msg);
-			
-			
+			String userAnswer = notEmptyIn(msg);
 			
 			if(s.isCorrect(userAnswer)) {
 				nGuessed++;
@@ -68,16 +69,49 @@ public class ApplicationMain {
 			}
 			nTotal++;
 			out("\n\nPremi invio per continuare!");
-			in(scan);
+			in();
 			clear();
 		}
 		
-		out(userName+" hai completato il gioco con un punteggio di:");
 		
+		printResultsMessage(userName,nGuessed,nTotal);				
+		
+		printRounds(resultList);
+	}
+	
+	public static boolean playAgain() {
+		out("\nPREMI INVIO PER CONTINUARE");
+		in();		
+		clear();
+		
+		String userAnswer;
+		
+		do{
+			userAnswer = notEmptyIn("Vuoi giocare ancora? [s/n]").trim().toLowerCase();
+			if(!userAnswer.equals("s") && !userAnswer.equals("n")) {
+				clear();
+				out("Input errato riprova!\n");
+			}
+		}while(!userAnswer.equals("s") && !userAnswer.equals("n"));
+		
+		if(userAnswer.equals("s")) {
+			return true;
+		}
+			
+		return false;		
+	}
+	
+	public static void printResultsMessage(String userName,int nGuessed,int nTotal) {
 		float percent = (nGuessed * 100)/nTotal;
+		out(userName+" "+getCustomMessage(percent)+", hai completato il gioco con un punteggio di: "+getAnsiPoints(percent)+nGuessed+"/"+nTotal+" ("+percent+"%)"+ANSI_RESET);		
 		
-		out("Frasi completate correttamente: "+getAnsiPoints(nGuessed)+nGuessed+"/"+nTotal+" ("+percent+"%)"+ANSI_RESET);		
-		
+	}
+	
+	public static String getCustomMessage(float points) {
+		return points > 50 ? "ben fatto" : "peccato";
+	}
+	
+	public static void printRounds(List<String[]> resultList) {
 		out("\nRisultati:");
 		
 		int roundCounter = 1;
@@ -92,19 +126,29 @@ public class ApplicationMain {
 			}
 			out(msg);
 			roundCounter++;
-		}		
-		
-		scan.close();
-		
+		}
 	}
 	
-	public static String getAnsiPoints(int points) {
+	
+	public static String getAnsiPoints(float points) {
 		
-		if(points>5) {
+		if(points>50) {
 			return ANSI_GREEN;
 		}
 		return ANSI_RED;
 		
+	}
+	
+	public static void printStartMenu() {
+		clear();
+		out("Benvenuto nel gioco di cultura generale!");
+		out("REGOLE:");
+		out("- maiuscole e minuscole non vengono controllate");
+		out("- non aggiungere punti alla fine delle frasi");
+		out("- divertiti e impara!");
+		out("PREMI INVIO PER CONTINUARE");
+		in();		
+		clear();
 	}
 	
 	public static void exitProgram(String msg) {
@@ -112,11 +156,11 @@ public class ApplicationMain {
 		System.exit(0);
 	}
 	
-	public static String notEmptyIn(Scanner sc,String msg) {
+	public static String notEmptyIn(String msg) {
 		String userAnswer = "";
 		while(userAnswer.equals("") || userAnswer.equals(" ")) {			
 			out(msg);
-			userAnswer = in(sc);
+			userAnswer = in();
 			if(userAnswer.equals("") || userAnswer.equals(" ")) {
 				clear();
 				out("Inserisci un'input valido!");
@@ -152,8 +196,8 @@ public class ApplicationMain {
 		System.out.println(msg);
 	}
 	
-	public static String in(Scanner sc) {
-		return sc.nextLine();		
+	public static String in() {
+		return scan.nextLine();		
 	}
 	
 	public final static void clear(){		

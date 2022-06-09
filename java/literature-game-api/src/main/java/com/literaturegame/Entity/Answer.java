@@ -18,9 +18,9 @@ public class Answer {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean is_correct;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_sentence")
-    @JsonIgnore
+    @JsonIgnore    
     private Sentence sentence;
 
     public Answer(){}

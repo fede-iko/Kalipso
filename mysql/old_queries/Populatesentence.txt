@@ -1,0 +1,11 @@
+INSERT INTO sentence (sentence_text) VALUES
+('Ei fu'), 
+('Tanto gentile e'), 
+('Nel mezzo del cammin di nostra vita'), 
+('La donzelletta vien dalla campagna'), 
+('Sempre caro mi fu'), 
+('Tu non altro che il canto'), 
+('La nebbia a gl''irti colli'), 
+('Si sta come d’autunno'), 
+('Silvia, rimembri ancora'), 
+('Gemmea l''aria, il sole così chiaro');

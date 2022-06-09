@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Struttura della tabella `answer`
 --
-DROP DATABASE literature_game;
+DROP DATABASE IF EXISTS literature_game;
 CREATE DATABASE literature_game;
 USE literature_game;
 
@@ -121,7 +121,7 @@ ALTER TABLE `sentence`
 -- Limiti per la tabella `answer`
 --
 ALTER TABLE `answer`
-  ADD CONSTRAINT `id_domanda` FOREIGN KEY (`id_sentence`) REFERENCES `sentence` (`id_sentence`);
+  ADD CONSTRAINT `id_domanda` FOREIGN KEY (`id_sentence`) REFERENCES `sentence` (`id_sentence`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
