@@ -1,7 +1,0 @@
-CREATE TABLE sentence (
-    id_sentence SMALLINT NOT NULL AUTO_INCREMENT,
-    sentence_text varchar(100),
-    n_guessed SMALLINT DEFAULT 0,
-    n_total SMALLINT DEFAULT 0,
-    PRIMARY KEY(id_sentence)
-    );
