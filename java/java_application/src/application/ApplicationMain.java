@@ -23,7 +23,7 @@ public class ApplicationMain {
 		
 		clear();
 		
-		out("Benvenuto "+userName);
+		out("Benvenuto/a "+userName);
 		do {
 			gameStart(userName);
 		}while(playAgain());
