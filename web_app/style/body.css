@@ -1,0 +1,64 @@
+:root {
+    --primary: black;
+    --btn-back: rgb(165, 189, 211);
+    --linear-back: linear-gradient(270deg, rgba(165, 189, 211, 1) 0%, rgba(225, 219, 205, 1) 100%);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+    background: url("../assets/bg-image.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title {
+    position: absolute;
+    top: 20%;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.title_name {
+    top: 10%;
+    font-size: 2.5rem;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_name {
+    color: var(--primary);
+    outline: 0;
+    border-width: 0 0 4px;
+    border-color: #333;
+    background: transparent;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    display: block;
+}
+
+.user_name::placeholder {
+    color: #333;
+}
