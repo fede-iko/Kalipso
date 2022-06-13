@@ -4,6 +4,10 @@
     --linear-back: linear-gradient(270deg, rgba(165, 189, 211, 1) 0%, rgba(225, 219, 205, 1) 100%);
 }
 
+@media (width: 1366px) and (height: 786px) {
+
+}
+
 body {
     width: 100vw;
     height: 100vh;
