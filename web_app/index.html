@@ -2,41 +2,37 @@
 
 <head>
     <title>Test cultura generale</title>
-    <link rel="stylesheet" type="text/css" href="style/master.css">
+    <link rel="stylesheet" type="text/css" href="style/master.css?v=5.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center text-center">
 
+    <div class="title">Quiz letteratura italiana</div>
 
+    <div class="container">
 
-        <div class="row">
-            <h1>Test cultura generale</h1>
-
-            <div class="col-2"></div>
-            <div class="col-8">
-                <div class="sentences-container row align-items-center"></div>
-                <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-4">
-                        <button class="btn btn-primary mt-5" id="start-button">Inizia il test</button>
-                    </div>
-                    <div class="col-4"></div>
-                </div>
-            </div>
-            <div class="col-2"></div>
+        <div class="user-input-container" id="user-input-container">
+            <input type="text" id="user_name" class="user_name" placeholder="Inserisci il tuo nome">
+            <button id="submit_name">INIZIAMO!</button>
         </div>
 
+        <div id="round-container">
 
+            <div id="contents-container"></div>
+            <div id="next-btn-container"></div>
 
+        </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="script/Game.js"></script>
+    <script src="script/rounds.js"></script>
+    <script src="script/username.js"></script>
     <script src="script/script.js"></script>
 </body>
 
