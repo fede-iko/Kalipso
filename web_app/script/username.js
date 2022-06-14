@@ -32,10 +32,35 @@ function toTitleCase(str) {
     );
 }
 
+function hasNumber(str) {
+    return /\d/.test(str);
+}
+
+function hasSymbols(str){
+    return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+|\s{2,}/.test(str);
+}
+
+function hasLetters(str){
+    return /[a-zA-Z]+/.test(str);
+}
+
 function isValidUsername() {
-    var validName = /^(([a-zA-Z]{2,})\s{0,1})+$/;
+
     var userName = $("#user_name").val();
-    return validName.test(userName);
+
+    if(hasNumber(userName)){
+        return false;
+    }
+
+    if(!hasLetters(userName)){
+        return false;
+    }
+
+    if(hasSymbols(userName)){
+        return false;
+    }
+
+    return true;
 }
 
 function name_inserted() {
