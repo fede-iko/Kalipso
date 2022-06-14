@@ -7,11 +7,23 @@ function getData() {
         url: "http://localhost:8080/sentence",
         method: "GET",
         success: function(response) {
+            response = shuffle_sentences(response);
             game = new Game(response);
             showSentence();
         }
     });
 
+}
+
+//RIORDINO CASUALMENTE LE DOMANDE OGNI VOLTA 
+function shuffle_sentences(obj){
+    for (var a = 0; a < obj.length; a++) {
+        var x = obj[a];
+        var y = Math.floor(Math.random() * (a + 1));
+        obj[a] = obj[y];
+        obj[y] = x;
+    }
+    return obj;
 }
 
 $(document).ready(function(){
