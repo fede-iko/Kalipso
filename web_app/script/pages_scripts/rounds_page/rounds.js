@@ -1,5 +1,6 @@
 var game = null;
 
+//FETCH DATA AND PUT IN THE GAME OBJECT
 function getData() {
 
     $.ajax({
@@ -7,18 +8,22 @@ function getData() {
         method: "GET",
         success: function(response) {
             game = new Game(response);
-
             showSentence();
         }
     });
 
 }
 
+$(document).ready(function(){
+    game_start();
+});
+
+//GAME START
 function game_start() {
 
     getData();
 
-    $("#next-btn-container").append("<button id='next-btn'>Next</button>");
+    $("#next-btn-container").append("<button id='next-btn'>NEXT</button>");
 
     $("#next-btn").on("click", function() {
         game.currentSentence++;
@@ -26,8 +31,7 @@ function game_start() {
     });
 }
 
-
-
+//SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
 function showSentence() {
 
     if (game.currentSentence >= game.sentences.length) {

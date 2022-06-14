@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    //USER TYPED SOMETHING
     $("#user_name").on("input", function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
@@ -10,19 +11,21 @@ $(document).ready(function() {
         }
     });
 
+    //USER PRESSED THE BUTTON
     $("#submit_name").on("click", function() {
-        if (isValidUsername()) {
-            name_inserted();
-        }
+        name_inserted();
     });
 
+    //USER PRESSED ENTER
     $(document).on("keypress", function(e) {
-        if (e.keyCode == 13 && isValidUsername()) {
+        if (e.keyCode == 13) {
             name_inserted();
         }
     });
 });
 
+//CHANGE THE STRING TO TITLE CASE
+//EX: eXaMple nUmber -> Example Number
 function toTitleCase(str) {
     return str.replace(
         /\w\S*/g,
@@ -32,42 +35,19 @@ function toTitleCase(str) {
     );
 }
 
-function hasNumber(str) {
-    return /\d/.test(str);
-}
-
-function hasSymbols(str){
-    return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+|\s{2,}/.test(str);
-}
-
-function hasLetters(str){
-    return /[a-zA-Z]+/.test(str);
-}
-
-function isValidUsername() {
+//RETURN TRUE IF THE USERNAME IS VALID
+function isValidUsername() {   
 
     var userName = $("#user_name").val();
 
-    if(hasNumber(userName)){
-        return false;
-    }
-
-    if(!hasLetters(userName)){
-        return false;
-    }
-
-    if(hasSymbols(userName)){
-        return false;
-    }
-
-    return true;
+    return /^[a-zA-Z0-9]+$/.test(userName)
 }
 
+//VALID USER AND LOADED ROUNDS
 function name_inserted() {
-    $(".title").addClass("title_name");
+    $(".title").addClass("smaller_title");
     $(".title").text("Buona fortuna " + toTitleCase($("#user_name").val()) + "!");
     $("#user-input-container").remove();
 
-
-    game_start();
+    loadRoundsPage();
 }
