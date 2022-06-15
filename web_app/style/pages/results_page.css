@@ -1,0 +1,47 @@
+body {
+    overflow: auto;
+    justify-content: stretch;
+}
+
+.scrollable-title {
+    margin: 10vh;
+    display: block;
+    position: static;
+    font-size: 3rem;
+    font-weight: bold;
+    height: 250%;
+}
+
+#results-container {
+    display: block;
+    position: static;
+    text-align: left;
+    border-bottom: 5px solid rgb(0, 0, 0);
+    color: #000000;
+    outline: 0;
+    border-width: 0 0 4px;
+    background: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-bottom: 4%;
+}
+
+#risultati-domanda{
+    font-size: 2rem;
+}
+
+#risultati-risposta{
+    font-size: 1.5rem;
+}
+
+.material-symbols-rounded.correct {
+    color: green;
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.material-symbols-rounded.wrong {
+    color: red;
+    font-size: 5rem;
+    font-weight: bold;
+}
