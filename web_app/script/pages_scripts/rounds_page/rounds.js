@@ -1,4 +1,7 @@
-var game = null;
+//IT PUT IN THE HTML THE LOADING 'SCREEN' SINCE THE DATA IS FETCHING
+$(".container").append("<div id='loading-container'><p>Loading...</p></div>");
+
+var sentencesContainer = null;
 
 //FETCH DATA AND PUT IN THE GAME OBJECT
 function getData() {
@@ -6,27 +9,48 @@ function getData() {
     $.ajax({
         url: "http://localhost:8080/sentence",
         method: "GET",
+        async: false,
         success: function(response) {
-            response = shuffle_sentences(response);
-            game = new Game(response);
-            showSentence();
+            sentencesContainer = createSentences(response);
+        },
+        //IF THERE IS AN ERROR, IT'S SHOWED IN THE SCREEN
+        error: function() {
+            $(".container").text("Application error! Please try later.");
+        },
+        //WHEN THE DATA IS FETCHED, THE LOADING SCREEN IS REMOVED AND THE GAME IS STARTED
+        complete: function() {
+            //IF THERE IS AN ERROR, THE GAME IS NOT STARTED
+            if (sentencesContainer != null) {
+                $("#loading-container").remove();
+                sentencesContainer.shuffleSentences();
+                sentencesContainer.shuffleAnswers();
+                showSentence();
+            }
         }
+
     });
 
 }
 
-//RIORDINO CASUALMENTE LE DOMANDE OGNI VOLTA 
-function shuffle_sentences(obj){
-    for (var a = 0; a < obj.length; a++) {
-        var x = obj[a];
-        var y = Math.floor(Math.random() * (a + 1));
-        obj[a] = obj[y];
-        obj[y] = x;
+//CREATE SENTENCES FROM THE JSON DATA
+function createSentences(response) {
+    var sentences = [];
+    for (var i = 0; i < response.length; i++) {
+        sentences.push(new Sentence(response[i].id_sentence, response[i].sentence_text, createAnswers(response[i].answers)));
     }
-    return obj;
+    return new SentencesContainer(sentences);
 }
 
-$(document).ready(function(){
+//CREATE ANSWERS FROM THE JSON DATA
+function createAnswers(answers) {
+    var answersArray = [];
+    for (var i = 0; i < answers.length; i++) {
+        answersArray.push(new Answer(answers[i].id_answer, answers[i].answer_text, answers[i].correct));
+    }
+    return answersArray;
+}
+
+$(document).ready(function() {
     game_start();
 });
 
@@ -38,7 +62,7 @@ function game_start() {
     $("#next-btn-container").append("<button id='next-btn'>NEXT</button>");
 
     $("#next-btn").on("click", function() {
-        game.currentSentence++;
+        sentencesContainer.currentSentence++;
         showSentence();
     });
 }
@@ -46,21 +70,21 @@ function game_start() {
 //SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
 function showSentence() {
 
-    if (game.currentSentence >= game.sentences.length) {
+    if (sentencesContainer.reachedEnd()) {
         $("#next-btn-container").remove();
         $("#round-container").text("You won!");
         return;
     }
 
-    var round = "<p>ROUND " + (game.currentSentence + 1) + "</p>";
+    var round = "<p>ROUND " + (sentencesContainer.currentSentence + 1) + "</p>";
 
-    var sentenceText = "<p>" + game.sentences[game.currentSentence].sentence_text + "</p>";
+    var sentenceText = "<p>" + sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText + "</p>";
 
-    var answers = game.sentences[game.currentSentence].answers;
+    var answers = sentencesContainer.sentences[sentencesContainer.currentSentence].answers;
     var answersTexts = "";
 
     answers.forEach(function(answer) {
-        answersTexts += "<p>" + answer.answer_text + "</p>";
+        answersTexts += "<p>" + answer.answerText + "</p>";
     });
 
     $("#contents-container").empty();
