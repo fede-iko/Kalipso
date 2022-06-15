@@ -1,56 +1,73 @@
-.round{
-    position:absolute;
-    font-size:3rem;
-    font-weight:bold;
-    top:17.5%;
-    left:43%;
+#round-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.question{
-    position:absolute;
-    font-size:2.5rem;
-    top:30%;
-    left:33.5%;
+
+.round {
+    font-size: 2.5rem;
+    font-weight: bold;
 }
-.bottoni{
-    position:absolute;
+
+#contents-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px 10px;
+    grid-auto-flow: row;
+    grid-template-areas: "round round" "sentence sentence" "btn1 btn2" "btn3 btn4" ". nextcontainer";
+}
+
+.round {
+    grid-area: round;
+}
+
+.sentence {
+    grid-area: sentence;
+}
+
+.btn1 {
+    grid-area: btn1;
+}
+
+.btn2 {
+    grid-area: btn2;
+}
+
+.btn3 {
+    grid-area: btn3;
+}
+
+.btn4 {
+    grid-area: btn4;
+}
+
+.btn-rounds {
     background-color: white;
-    border-radius:50px;
-    margin:10px;
+    border-radius: 50px;
+    margin: 10px;
     padding: 10px 40px;
-    width:30%;
-    height:6%;
-    font-size:1.5rem;
+    font-size: 1.5rem;
+    width: 500px;
 }
-.bottoni:focus{
-    background-color:#B7B7FD;
+
+#controls-container {
+    display: flex;
+    justify-content: space-between;
 }
-.bottoni#bottone1{
-    top:40%;
-    left:18.5%;   
+
+#btnPrev,
+#btnNext {
+    width: 120px;
+    display: none;
 }
-.bottoni#bottone2{
-    top:40%;
-    left:50%; 
+
+#btnPrev:hover,
+#btnNext:hover {
+    background-color: #B7B7FD;
 }
-.bottoni#bottone3{
-    top: 55%;
-    left:18.5%;    
-}
-.bottoni#bottone4{
-    top:55%;
-    left:50%;
-}
-.numerorisposta{
-    font-weight:bold;
-}
-#bottonenext{
-    position:absolute;
-    background-color: white;
-    border-radius:50px;
-    margin:10px;
-    padding: 10px 40px;
-    width:8%;
-    height:6%;
-    right:19%;
-    bottom:15%;
+
+.answer_selected {
+    background-color: #B7B7FD;
 }

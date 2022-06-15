@@ -1,8 +1,4 @@
-body {
-    overflow: auto;
-    justify-content: stretch;
-}
-
+/* 
 .scrollable-title {
     margin: 10vh;
     display: block;
@@ -26,11 +22,11 @@ body {
     margin-bottom: 4%;
 }
 
-#risultati-domanda{
+#risultati-domanda {
     font-size: 2rem;
 }
 
-#risultati-risposta{
+#risultati-risposta {
     font-size: 1.5rem;
 }
 
@@ -44,4 +40,4 @@ body {
     color: red;
     font-size: 5rem;
     font-weight: bold;
-}
+} */

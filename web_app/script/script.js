@@ -1,3 +1,5 @@
-$(document).ready(function(){
-    loadUserNameForm();
+$(document).ready(function() {
+    // loadUserNameForm();
+    loadRoundsPage();
+    //loadEndPage();
 });

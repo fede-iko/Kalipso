@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.literaturegame.Entity.Sentence;
 import com.literaturegame.Repository.SentenceRepository;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/sentence")
 public class SentenceController {
