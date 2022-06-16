@@ -6,7 +6,7 @@ var userName;
 $(document).ready(function() {
 
     //USER TYPED SOMETHING
-    $("#user_name").on("input", function() {
+    $("#user_name").unbind().on("input", function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
             $("#submit_name").show();
@@ -17,12 +17,12 @@ $(document).ready(function() {
     });
 
     //USER PRESSED THE BUTTON
-    $("#submit_name").on("click", function() {
+    $("#submit_name").unbind().on("click", function() {
         name_inserted();
     });
 
     //USER PRESSED ENTER
-    $(document).on("keypress", function(e) {
+    $(document).unbind().on("keypress", function(e) {
         if (e.keyCode == 13 && isValidUsername()) {
             name_inserted();
         }
@@ -40,11 +40,6 @@ function toTitleCase(str) {
     );
 }
 
-//REMOVE ALL GENERAL EVENT LISTENERS
-function removeEvtLsts(){
-    $(document).off("keypress");
-}
-
 //RETURN TRUE IF THE USERNAME IS VALID
 function isValidUsername() {
     var usr = $("#user_name").val();
@@ -58,9 +53,5 @@ function name_inserted() {
     $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
     $("#user-input-container").remove();
 
-    isUserNamePage = false;
-
-    removeEvtLsts();
-    
     loadRoundsPage();
 }

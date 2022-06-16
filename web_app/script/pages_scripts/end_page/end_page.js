@@ -1,5 +1,3 @@
-// userAnswers
-
 function showResult() {
     let corrects = 0;
     let alls = 0;
@@ -10,22 +8,27 @@ function showResult() {
         }
     }
 
-    if(corrects/alls > 0.5){
-        $("#resultTitle").append("<p class='good-result'>Ben fatto "+userName+"!</p>");
+    if (corrects / alls > 0.5) {
+        $("#resultTitle").append("<p class='good-result'>Ben fatto " + userName + "!</p>");
         $("#resultPoints").addClass("good-result");
-    }else{
-        $("#resultTitle").append("<p class='bad-result'>Peccato "+userName+"! Riprova!</p>");
+    } else {
+        $("#resultTitle").append("<p class='bad-result'>Peccato " + userName + "! Riprova!</p>");
         $("#resultPoints").addClass("bad-result");
     }
 
-    $("#resultPoints").append(corrects+"/"+alls);
+    $("#resultPoints").append(corrects + "/" + alls);
 }
-$(document).ready(function(){
+$(document).ready(function() {
     showResult();
 
-    $("#playAgainBtn").on("click",function(){
+    $("#playAgainBtn").on("click", function() {
         $("#end-container").remove();
         loadRoundsPage();
+    });
+
+    $("#viewResultsBtn").on("click", function() {
+        $("#end-container").remove();
+        loadResultsPage();
     });
 
 });
