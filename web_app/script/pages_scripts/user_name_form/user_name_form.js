@@ -1,3 +1,8 @@
+//CHECK IF IS STILL IN THE USERNAME PAGE (USED FOR GENERAL EVENT LISTENER ex: ENTER CLICK)
+var isUserNamePage = true;
+
+var userName;
+
 $(document).ready(function() {
 
     //USER TYPED SOMETHING
@@ -35,17 +40,27 @@ function toTitleCase(str) {
     );
 }
 
+//REMOVE ALL GENERAL EVENT LISTENERS
+function removeEvtLsts(){
+    $(document).off("keypress");
+}
+
 //RETURN TRUE IF THE USERNAME IS VALID
 function isValidUsername() {
-    var userName = $("#user_name").val();
-    return /^[a-zA-Z0-9]+$/.test(userName)
+    var usr = $("#user_name").val();
+    return /^[a-zA-Z0-9]+$/.test(usr)
 }
 
 //VALID USER AND LOADED ROUNDS
 function name_inserted() {
+    userName = $("#user_name").val();
     $(".title").addClass("smaller_title");
-    $(".title").text("Buona fortuna " + toTitleCase($("#user_name").val()) + "!");
+    $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
     $("#user-input-container").remove();
 
+    isUserNamePage = false;
+
+    removeEvtLsts();
+    
     loadRoundsPage();
 }

@@ -1,56 +1,32 @@
-/* #contents-container {
-    position: absolute;
-    top: 23.75%;
-    left: 26%;
-    background-color: white;
-    border-radius: 5% 5% 5% 5%;
-    width: 900px;
-    height: 530px;
-} */
+#end-container{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
 
-#titolorisultato {
-    position: absolute;
-    font-size: 3rem;
+#resultTitle {
+    font-size: 2.5rem;
     font-weight: bold;
-    top: 10%;
-    left: 33%;
 }
 
-#stringapunteggio {
-    position: absolute;
-    font-size: 2rem;
-    top: 40%;
-    left: 45%;
-}
 
-#risultato {
-    position: absolute;
-    font-size: 3.5rem;
+#resultPoints {
+    font-size: 2.5rem;
     font-weight: bold;
-    top: 48%;
-    left: 46%;
 }
 
-#visualizzarisultati {
-    position: absolute;
-    background-color: white;
-    border-radius: 50px;
-    margin: 10px;
-    padding: 10px 40px;
-    width: 17%;
-    height: 6%;
-    top: 63%;
-    left: 30%;
+
+#viewResultsBtn,
+#playAgainBtn {
+    width: max-content;
 }
 
-#giocaancora {
-    position: absolute;
-    background-color: white;
-    border-radius: 50px;
-    margin: 10px;
-    padding: 10px 40px;
-    width: 17%;
-    height: 6%;
-    top: 63%;
-    left: 51%;
+.good-result{
+    color:green;
+}
+
+.bad-result{
+    color:red;
 }

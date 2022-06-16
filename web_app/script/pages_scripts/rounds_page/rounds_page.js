@@ -1,9 +1,12 @@
 //IT PUT IN THE HTML THE LOADING 'SCREEN' SINCE THE DATA IS FETCHING
 $(".main-container").append("<div id='loading-container'><p>Loading...</p></div>");
 
+//CHECK IF IS STILL IN THE ROUNDS PAGE (USED FOR GENERAL EVENT LISTENER ex: ENTER CLICK)
+var isRoundsPage = true;
+
 var sentencesContainer = null;
 
-var userAnswers = [];
+var userAnswers = {};
 
 //FETCH DATA AND PUT IN THE GAME OBJECT
 function getData() {
@@ -59,6 +62,9 @@ $(document).ready(function() {
 //CREATE NEXT BTN AND PREV BTN CLICK EVENTS
 function createNextPrevBtnEvents() {
     $("#btnNext").on("click", function() {
+        if(!isAnswered()){
+            return;
+        }
         sentencesContainer.currentSentence++;
         showSentence();
     });
@@ -79,7 +85,7 @@ TODO
 ////
 function answerSelectEventHandler() {
     for (let i = 1; i < 5; i++) {
-        $("#contents-container").on("click", "#btn" + i, function() {
+        $("#contents-container").on("click", "#btn" + i, function() {                        
             this.classList.add("answer_selected");
             var actualSentenceText = sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText;
             var actualAnswer = sentencesContainer.sentences[sentencesContainer.currentSentence].answers[i - 1];
@@ -98,29 +104,21 @@ function answerSelectEventHandler() {
 function getAnswersHTML(answers) {
     var answersTexts = "";
     var btnCount = 1;
-    answers.forEach(function(answer) {
-        answersTexts += "<div class='btn" + btnCount + "'><button id='btn" + btnCount + "' class='btn-rounds'>" + answer.answerText + "</button></div>";
+    answers.forEach(function(answer) {        
+        var selectedClass = "";
+        if(isAnswered()){
+            selectedClass = userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText][0]==answer.answerText ? "answer_selected" : "";
+        }        
+        answersTexts += "<div class='btn" + btnCount + "'><button id='btn" + btnCount + "' class='btn-rounds "+selectedClass+"'>" + answer.answerText + "</button></div>";
         btnCount++;
     });
     return answersTexts;
 }
 
-//DEMO FUNCTION TO SHOW RESULTS
-function showResults() {
-    let corrects = 0;
-    let alls = 0;
-    for (const [sentenceText, answer] of Object.entries(userAnswers)) {
-        alls++;
-        if (answer[1]) {
-            corrects++;
-        }
-    }
-    var results = "<p>You got " + corrects + " out of " + alls + " correct.</p>";
-    $(".main-container").append(results);
-}
-
 //GAME START
 function game_start() {
+    sentencesContainer = null;
+    userAnswers = {}
 
     getData();
 
@@ -129,15 +127,59 @@ function game_start() {
     createNextPrevBtnEvents();
 
     answerSelectEventHandler();
+
+    //ENTER CLICK LISTENERS
+    $(document).on("keypress",function(e){   
+        if(!isRoundsPage){
+            return;
+        }     
+        if(e.keyCode == 13){
+            if(isAnswered()){
+                sentencesContainer.currentSentence++;            
+                showSentence();
+            }else{
+                alert("Devi selezionare una risposta!");
+                return;
+            }
+        }
+    });
+
+    //KEYBOARD ARROW CLICK LISTENERS
+    $(document).on("keydown",function(e){
+        if(!isRoundsPage){
+            return;
+        }
+        if(e.keyCode == 39){
+            if(isAnswered()){
+                sentencesContainer.currentSentence++;            
+                showSentence();
+            }else{
+                alert("Devi selezionare una risposta!");
+                return;
+            }
+        }
+        if(e.keyCode == 37 && sentencesContainer.currentSentence > 0){
+            sentencesContainer.currentSentence--;            
+            showSentence();
+        }        
+    });
+}
+
+//RETURN TRUE IF THIS ROUND IS ANSERED
+function isAnswered(){    
+    console.log(userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence]]);
+    console.log(userAnswers);
+    return userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText] != undefined;
 }
 
 //SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
-function showSentence() {
+function showSentence() {    
 
     //IF THE CURRENT SENTENCE IS THE LAST ONE
     if (sentencesContainer.reachedEnd()) {
-        $("#contents-container").remove();
-        showResults();
+        isRoundsPage = false;
+        $("#round-page-container").remove();
+        loadEndPage()
         return;
     }
 
@@ -147,10 +189,10 @@ function showSentence() {
 
     } else {
         $("#btnPrev").hide();
-    }
+    }    
 
     //ROUND TEXT
-    var round = "<div class='round'>" + (sentencesContainer.currentSentence + 1) + "° ROUND</div>";
+    var round = "<div class='round'>ROUND " + (sentencesContainer.currentSentence + 1) + "/"+(sentencesContainer.sentences.length)+"</div>";
 
     //SENTENCE TEXT
     var sentenceText = "<div class='sentence'><h2>" + sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText + "</h2></div>";
