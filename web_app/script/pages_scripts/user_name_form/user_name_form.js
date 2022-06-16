@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     //USER PRESSED ENTER
     $(document).on("keypress", function(e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && isValidUsername()) {
             name_inserted();
         }
     });
@@ -36,10 +36,8 @@ function toTitleCase(str) {
 }
 
 //RETURN TRUE IF THE USERNAME IS VALID
-function isValidUsername() {   
-
+function isValidUsername() {
     var userName = $("#user_name").val();
-
     return /^[a-zA-Z0-9]+$/.test(userName)
 }
 
