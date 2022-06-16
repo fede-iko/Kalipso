@@ -4,6 +4,7 @@
     --linear-back: linear-gradient(270deg, rgba(165, 189, 211, 1) 0%, rgba(225, 219, 205, 1) 100%);
 }
 
+
 /*
 @media (width: 1366px) and (height: 786px) {
 
@@ -15,7 +16,7 @@ body {
     height: 100vh;
     max-width: 100%;
     max-height: 100%;
-    overflow: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,21 +35,19 @@ body {
 
 .title {
     position: absolute;
-    top: 20%;
+    top: 10%;
     font-size: 3rem;
     font-weight: bold;
 }
 
 .smaller_title {
-    top: 10%;
     font-size: 2.5rem;
 }
 
-.container {
-    position: absolute;
-    top: 50%;
+.main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }

@@ -1,24 +1,37 @@
-<html>
-<head>
-    <title>Test cultura generale</title>
-    <link rel="stylesheet" type="text/css" href="../style/master.css?v=5.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<div id="round-container">
+<div id="round-page-container">
     <div id="contents-container">
-        <h1 class="round">1° ROUND</h1>
-        <h2 class="question">Nel mezzo del cammin di nostra vita</h2>
-        <button class="bottoni" id="bottone1"><span class="numerorisposta">1)</span>Lorem Ipsum</button>
-        <button class="bottoni" id="bottone2"><span class="numerorisposta">2)</span>Lorem Ipsum</button>
-        <button class="bottoni" id="bottone3"><span class="numerorisposta">3)</span>Lorem Ipsum</button>
-        <button class="bottoni" id="bottone4"><span class="numerorisposta">4)</span>Lorem Ipsum</button>
-        <button id="bottonenext"><i class="material-icons">arrow_forward</i></button>
+
     </div>
-    <div id="next-btn-container"></div>
+    <div id="controls-container">
+        <button id="btnPrev" class="btn-rounds"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="btnNext" class="btn-rounds"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+
 </div>
+
+
 <script src="./script/pages_scripts/rounds_page/Entity/Answer.js"></script>
 <script src="./script/pages_scripts/rounds_page/Entity/Sentence.js"></script>
 <script src="./script/pages_scripts/rounds_page/Util/SentencesContainer.js"></script>
-<script src="./script/pages_scripts/rounds_page/rounds.js"></script>
-</html>
+<script src="./script/pages_scripts/rounds_page/rounds_page.js"></script>
+
+
+
+
+<!-- <h1 class="round">1° ROUND</h1>
+        <div class="sentence">
+            <h2>Nel mezzo del cammin di nostra vita</h2>
+        </div>
+        <div class="btn1">
+            <button class="btn-rounds"><span class="numerorisposta">1)</span>Lorem Ipsum</button>
+        </div>
+        <div class="btn2">
+            <button class="btn-rounds"><span class="numerorisposta">2)</span>Lorem Ipsum</button>
+        </div>
+        <div class="btn3">
+            <button class="btn-rounds"><span class="numerorisposta">3)</span>Lorem Ipsum</button>
+        </div>
+        <div class="btn4">
+            <button class="btn-rounds"><span class="numerorisposta">4)</span>Lorem Ipsum</button>
+        </div> -->
