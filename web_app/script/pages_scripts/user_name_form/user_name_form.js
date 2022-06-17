@@ -4,12 +4,18 @@ var isUserNamePage = true;
 var userName;
 
 $(document).ready(function() {
+    if(sessionStorage.getItem("username")){
+        $("#user_name").val(sessionStorage["username"]); 
+        name_inserted();
+    }
 
     //USER TYPED SOMETHING
     $("#user_name").unbind().on("input", function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
-            $("#submit_name").show();
+            $("#submit_name").show();                            
+            sessionStorage.setItem("username", $("#user_name").val());
+            
         } else {
             $("#user_name").css("color", "red");
             $("#submit_name").hide();
@@ -52,6 +58,8 @@ function name_inserted() {
     $(".title").addClass("smaller_title");
     $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
     $("#user-input-container").remove();
+
+    
 
     loadRoundsPage();
 }

@@ -1,9 +1,6 @@
 //IT PUT IN THE HTML THE LOADING 'SCREEN' SINCE THE DATA IS FETCHING
 $(".main-container").append("<div id='loading-container'><p>Loading...</p></div>");
 
-//CHECK IF IS STILL IN THE ROUNDS PAGE (USED FOR GENERAL EVENT LISTENER ex: ENTER CLICK)
-var isRoundsPage = true;
-
 var sentencesContainer = null;
 
 var userAnswers = {};
@@ -63,6 +60,7 @@ $(document).ready(function() {
 function createNextPrevBtnEvents() {
     $("#btnNext").unbind().on("click", function() {
         if (!isAnswered()) {
+            alert("Devi selezionare una risposta!");
             return;
         }
         sentencesContainer.currentSentence++;
@@ -76,13 +74,6 @@ function createNextPrevBtnEvents() {
 }
 
 //ANSWER SELECT EVENT HANDLER
-////
-/*
-TODO
-    - When the user comes back to a previous round, the answer selected by the user is still marked as selected
-    - The user can't skip a round    
-*/
-////
 function answerSelectEventHandler() {
     for (let i = 1; i < 5; i++) {
         $("#contents-container").on("click", "#btn" + i, function() {
@@ -90,6 +81,10 @@ function answerSelectEventHandler() {
             var actualSentenceText = sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText;
             var actualAnswer = sentencesContainer.sentences[sentencesContainer.currentSentence].answers[i - 1];
             userAnswers[actualSentenceText] = [actualAnswer.answerText, actualAnswer.isCorrect];
+
+            //SAVE IN SESSION
+            sessionStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+
             //TOGGLE THE BUTTONS
             for (var j = 1; j < 5; j++) {
                 if (j != this.id.substring(3)) {
@@ -117,10 +112,21 @@ function getAnswersHTML(answers) {
 
 //GAME START
 function game_start() {
-    sentencesContainer = null;
-    userAnswers = {}
 
-    getData();
+    if(!sessionStorage.getItem("userAnswers")){
+        sentencesContainer = null;
+        userAnswers = {}
+        getData();
+        sessionStorage.setItem("sentencesContainer",JSON.stringify(sentencesContainer));
+    }else{
+        var sessionSentencesContainer = JSON.parse(sessionStorage["sentencesContainer"]);
+        var sessionUserAnswers = JSON.parse(sessionStorage["userAnswers"]);      
+        userAnswers = sessionUserAnswers;
+        sentencesContainer = new SentencesContainer(sessionSentencesContainer['sentences']);
+        sentencesContainer.currentSentence = sessionSentencesContainer["currentSentence"];
+        $("#loading-container").remove();
+        showSentence();
+    }    
 
     $("#btnNext").show();
 
@@ -153,10 +159,10 @@ function isAnswered() {
 
 //SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
 function showSentence() {
+    sessionStorage.setItem("sentencesContainer",JSON.stringify(sentencesContainer));
 
     //IF THE CURRENT SENTENCE IS THE LAST ONE
     if (sentencesContainer.reachedEnd()) {
-        isRoundsPage = false;
         $("#round-page-container").remove();
         removeEvtLsts(document);
         loadEndPage()
@@ -183,5 +189,4 @@ function showSentence() {
 
     $("#contents-container").empty();
     $("#contents-container").append(round + sentenceText + answersTexts);
-
 }

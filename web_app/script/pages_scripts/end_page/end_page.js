@@ -19,9 +19,12 @@ function showResult() {
     $("#resultPoints").append(corrects + "/" + alls);
 }
 $(document).ready(function() {
+    
     showResult();
 
     $("#playAgainBtn").on("click", function() {
+        sessionStorage.removeItem("sentencesContainer");
+        sessionStorage.removeItem("userAnswers");
         $("#end-container").remove();
         loadRoundsPage();
     });
