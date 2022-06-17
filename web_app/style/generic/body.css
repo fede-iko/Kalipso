@@ -19,7 +19,7 @@ body {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: stretch;
     align-items: center;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
@@ -34,8 +34,7 @@ body {
 }
 
 .title {
-    position: absolute;
-    top: 10%;
+    margin: 100px 0;
     font-size: 3rem;
     font-weight: bold;
 }

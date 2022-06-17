@@ -1,43 +1,39 @@
-/* 
-.scrollable-title {
-    margin: 10vh;
-    display: block;
-    position: static;
-    font-size: 3rem;
-    font-weight: bold;
-    height: 250%;
+#results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#results-container {
-    display: block;
-    position: static;
+.result-container {
+    display: inline-block;
     text-align: left;
     border-bottom: 5px solid rgb(0, 0, 0);
     color: #000000;
     outline: 0;
     border-width: 0 0 4px;
     background: transparent;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
+    margin: 0 auto;
     margin-bottom: 4%;
+    width: 100%;
 }
 
-#risultati-domanda {
+.round-number {
     font-size: 2rem;
 }
 
-#risultati-risposta {
+.round-result {
     font-size: 1.5rem;
 }
 
-.material-symbols-rounded.correct {
-    color: green;
-    font-size: 5rem;
-    font-weight: bold;
+.result-symbol {
+    margin: 0 1rem;
 }
 
-.material-symbols-rounded.wrong {
+.good-answer {
+    color: green;
+}
+
+.bad-answer {
     color: red;
-    font-size: 5rem;
-    font-weight: bold;
-} */
+}

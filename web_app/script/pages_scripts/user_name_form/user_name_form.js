@@ -1,7 +1,12 @@
+//CHECK IF IS STILL IN THE USERNAME PAGE (USED FOR GENERAL EVENT LISTENER ex: ENTER CLICK)
+var isUserNamePage = true;
+
+var userName;
+
 $(document).ready(function() {
 
     //USER TYPED SOMETHING
-    $("#user_name").on("input", function() {
+    $("#user_name").unbind().on("input", function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
             $("#submit_name").show();
@@ -12,12 +17,12 @@ $(document).ready(function() {
     });
 
     //USER PRESSED THE BUTTON
-    $("#submit_name").on("click", function() {
+    $("#submit_name").unbind().on("click", function() {
         name_inserted();
     });
 
     //USER PRESSED ENTER
-    $(document).on("keypress", function(e) {
+    $(document).unbind().on("keypress", function(e) {
         if (e.keyCode == 13 && isValidUsername()) {
             name_inserted();
         }
@@ -37,14 +42,15 @@ function toTitleCase(str) {
 
 //RETURN TRUE IF THE USERNAME IS VALID
 function isValidUsername() {
-    var userName = $("#user_name").val();
-    return /^[a-zA-Z0-9]+$/.test(userName)
+    var usr = $("#user_name").val();
+    return /^[a-zA-Z0-9]+$/.test(usr)
 }
 
 //VALID USER AND LOADED ROUNDS
 function name_inserted() {
+    userName = $("#user_name").val();
     $(".title").addClass("smaller_title");
-    $(".title").text("Buona fortuna " + toTitleCase($("#user_name").val()) + "!");
+    $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
     $("#user-input-container").remove();
 
     loadRoundsPage();
