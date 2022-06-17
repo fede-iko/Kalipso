@@ -3,27 +3,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .result-container {
     display: inline-block;
     text-align: left;
     border-bottom: 5px solid rgb(0, 0, 0);
-    color: #000000;
-    outline: 0;
     border-width: 0 0 4px;
     background: transparent;
-    margin: 0 auto;
-    margin-bottom: 4%;
-    width: 100%;
+    width: 90%;
 }
 
-.round-number {
-    font-size: 2rem;
-}
-
-.round-result {
-    font-size: 1.5rem;
+.result-container:focus {
+    outline: 1px solid rgb(0, 0, 0);
 }
 
 .result-symbol {

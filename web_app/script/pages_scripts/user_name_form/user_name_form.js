@@ -12,8 +12,6 @@ $(document).ready(function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
             $("#submit_name").show();
-            sessionStorage.setItem("username", $("#user_name").val());
-
         } else {
             $("#user_name").css("color", "red");
             $("#submit_name").hide();
@@ -52,9 +50,14 @@ function isValidUsername() {
 
 //VALID USER AND LOAD ROUNDS
 function name_inserted() {
+    sessionStorage.setItem("username", $("#user_name").val());
     userName = $("#user_name").val();
-    $(".title").addClass("smaller_title");
-    $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
+
+    //NEEDS TO BE FIXED
+    // $(".title").addClass("smaller_title");
+    // $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
+    $(".title").remove();
+
     $("#user-input-container").remove();
 
     loadRoundsPage();

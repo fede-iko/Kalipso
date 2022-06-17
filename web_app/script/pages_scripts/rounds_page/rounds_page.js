@@ -99,16 +99,17 @@ function answerSelectEventHandler() {
 
 //GET ANSWERS HTML FROM THE ANSWERS ARRAY
 function getAnswersHTML(answers) {
-    var answersTexts = "";
+    var answersTexts = "<div class='row mt-2'>";
     var btnCount = 1;
     answers.forEach(function(answer) {
         var selectedClass = "";
         if (isAnswered()) {
             selectedClass = userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText][0] == answer.answerText ? "answer_selected" : "";
         }
-        answersTexts += "<div class='btn" + btnCount + "'><button id='btn" + btnCount + "' class='btn-rounds " + selectedClass + "'>" + answer.answerText + "</button></div>";
+        answersTexts += "<div class='col-12 col-md-6 btn" + btnCount + " mt-5'><button id='btn" + btnCount + "' class='primary-button " + selectedClass + " h4 p-2 w-100'>" + answer.answerText + "</button></div>";
         btnCount++;
     });
+    answersTexts += "</div>";
     return answersTexts;
 }
 
@@ -182,10 +183,10 @@ function showSentence() {
     }
 
     //ROUND TEXT
-    var round = "<div class='round'>ROUND " + (sentencesContainer.currentSentence + 1) + "/" + (sentencesContainer.sentences.length) + "</div>";
+    var round = "<div class='row'><div class='round h1 fw-bold'>ROUND " + (sentencesContainer.currentSentence + 1) + "/" + (sentencesContainer.sentences.length) + "</div></div>";
 
     //SENTENCE TEXT
-    var sentenceText = "<div class='sentence'><h2>" + sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText + "</h2></div>";
+    var sentenceText = "<div class='row m-2'><div class='sentence'><h2>" + sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText + "...</h2></div></div>";
 
     //ANSWERS
     var answers = sentencesContainer.sentences[sentencesContainer.currentSentence].answers;
