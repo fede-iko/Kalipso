@@ -1,8 +1,7 @@
-//IT PUT IN THE HTML THE LOADING 'SCREEN' SINCE THE DATA IS FETCHING
-$(".main-container").append("<div id='loading-container'><p>Loading...</p></div>");
-
+//CONTAINER FOR SENTENCES LOADED FROM API
 var sentencesContainer = null;
 
+//ALL THE USER ANSWERS
 var userAnswers = {};
 
 //FETCH DATA AND PUT IN THE GAME OBJECT
@@ -17,7 +16,9 @@ function getData() {
         },
         //IF THERE IS AN ERROR, IT'S SHOWED IN THE SCREEN
         error: function() {
-            $(".main-container").text("Application error! Please try later.");
+            $msg = "Connection error! Please try again later.";
+            $("#loading-container").html($msg);
+            throw new Error($msg);
         },
         //WHEN THE DATA IS FETCHED, THE LOADING SCREEN IS REMOVED AND THE GAME IS STARTED
         complete: function() {
@@ -47,7 +48,7 @@ function createSentences(response) {
 function createAnswers(answers) {
     var answersArray = [];
     for (var i = 0; i < answers.length; i++) {
-        answersArray.push(new Answer(answers[i].id_answer, answers[i].answer_text, answers[i].correct));
+        answersArray.push(new Answer(answers[i].id_answer, answers[i].answer_text));
     }
     return answersArray;
 }
@@ -75,12 +76,13 @@ function createNextPrevBtnEvents() {
 
 //ANSWER SELECT EVENT HANDLER
 function answerSelectEventHandler() {
+    $("#contents-container").unbind();
     for (let i = 1; i < 5; i++) {
         $("#contents-container").on("click", "#btn" + i, function() {
             this.classList.add("answer_selected");
             var actualSentenceText = sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText;
             var actualAnswer = sentencesContainer.sentences[sentencesContainer.currentSentence].answers[i - 1];
-            userAnswers[actualSentenceText] = [actualAnswer.answerText, actualAnswer.isCorrect];
+            userAnswers[actualSentenceText] = [actualAnswer.id, actualAnswer.answerText];
 
             //SAVE IN SESSION
             sessionStorage.setItem("userAnswers", JSON.stringify(userAnswers));
@@ -113,20 +115,23 @@ function getAnswersHTML(answers) {
 //GAME START
 function game_start() {
 
-    if(!sessionStorage.getItem("userAnswers")){
+    //IF THE USERANSWERS ARE NOT LOADED IN THE SESSION, IT MEANS THAT IS A NEW GAME
+    if (!sessionStorage.getItem("userAnswers")) {
         sentencesContainer = null;
         userAnswers = {}
         getData();
-        sessionStorage.setItem("sentencesContainer",JSON.stringify(sentencesContainer));
-    }else{
+        sessionStorage.setItem("sentencesContainer", JSON.stringify(sentencesContainer));
+    } else {
         var sessionSentencesContainer = JSON.parse(sessionStorage["sentencesContainer"]);
-        var sessionUserAnswers = JSON.parse(sessionStorage["userAnswers"]);      
+        var sessionUserAnswers = JSON.parse(sessionStorage["userAnswers"]);
+
         userAnswers = sessionUserAnswers;
         sentencesContainer = new SentencesContainer(sessionSentencesContainer['sentences']);
         sentencesContainer.currentSentence = sessionSentencesContainer["currentSentence"];
+
         $("#loading-container").remove();
         showSentence();
-    }    
+    }
 
     $("#btnNext").show();
 
@@ -152,19 +157,18 @@ function game_start() {
     });
 }
 
-//RETURN TRUE IF THIS ROUND IS ANSERED
+//RETURN TRUE IF THIS ROUND IS ANSWERED
 function isAnswered() {
     return userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText] != undefined;
 }
 
 //SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
 function showSentence() {
-    sessionStorage.setItem("sentencesContainer",JSON.stringify(sentencesContainer));
+    sessionStorage.setItem("sentencesContainer", JSON.stringify(sentencesContainer));
 
     //IF THE CURRENT SENTENCE IS THE LAST ONE
     if (sentencesContainer.reachedEnd()) {
         $("#round-page-container").remove();
-        removeEvtLsts(document);
         loadEndPage()
         return;
     }

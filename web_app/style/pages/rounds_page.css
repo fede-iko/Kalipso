@@ -71,3 +71,8 @@
 .answer_selected {
     background-color: #B7B7FD;
 }
+
+#loading-container {
+    font-size: 2rem;
+    font-weight: 500;
+}

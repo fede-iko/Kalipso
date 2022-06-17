@@ -1,11 +1,9 @@
-//CHECK IF IS STILL IN THE USERNAME PAGE (USED FOR GENERAL EVENT LISTENER ex: ENTER CLICK)
-var isUserNamePage = true;
-
 var userName;
 
 $(document).ready(function() {
-    if(sessionStorage.getItem("username")){
-        $("#user_name").val(sessionStorage["username"]); 
+    //IF THE USERNAME IS ALREADY INSERTED IN THE SESSION STORAGE LOAD THE ROUNDS PAGE
+    if (sessionStorage.getItem("username")) {
+        $("#user_name").val(sessionStorage["username"]);
         name_inserted();
     }
 
@@ -13,9 +11,9 @@ $(document).ready(function() {
     $("#user_name").unbind().on("input", function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
-            $("#submit_name").show();                            
+            $("#submit_name").show();
             sessionStorage.setItem("username", $("#user_name").val());
-            
+
         } else {
             $("#user_name").css("color", "red");
             $("#submit_name").hide();
@@ -52,14 +50,12 @@ function isValidUsername() {
     return /^[a-zA-Z0-9]+$/.test(usr)
 }
 
-//VALID USER AND LOADED ROUNDS
+//VALID USER AND LOAD ROUNDS
 function name_inserted() {
     userName = $("#user_name").val();
     $(".title").addClass("smaller_title");
     $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
     $("#user-input-container").remove();
-
-    
 
     loadRoundsPage();
 }

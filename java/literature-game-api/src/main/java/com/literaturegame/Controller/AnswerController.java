@@ -25,8 +25,13 @@ public class AnswerController {
     @GetMapping
     public List<Answer> findAnswers(){
         return answerRepository.findAll();
+    }    
+    
+    @GetMapping("/good_answers")
+    public List<Integer> findGoodAnswers(){
+    	return answerRepository.findGoodAnswers();
     }
-
+    
     @GetMapping("/{idAnswer}")
     public ResponseEntity<Answer> getAnswerById(@PathVariable int idAnswer){
     	Optional<Answer> a = answerRepository.findById(idAnswer);

@@ -1,9 +1,8 @@
 class Answer {
 
-    constructor(id, answerText, isCorrect) {
+    constructor(id, answerText) {
         this.id = id;
         this.answerText = answerText;
-        this.isCorrect = isCorrect;
     }
 
 }
