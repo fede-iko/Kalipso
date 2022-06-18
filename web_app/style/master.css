@@ -1,10 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css");
 
 /* GENERIC FOLDER */
+
 @import "./generic/body.css";
 @import "./generic/primary-button.css";
 
 /* PAGES FOLDER */
+
 @import "./pages/user_name_form.css";
 @import "./pages/rounds_page.css";
 @import "./pages/end_page.css";

@@ -3,53 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.round {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-#contents-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px 10px;
-    grid-auto-flow: row;
-    grid-template-areas: "round round" "sentence sentence" "btn1 btn2" "btn3 btn4" ". nextcontainer";
-}
-
-.round {
-    grid-area: round;
-}
-
-.sentence {
-    grid-area: sentence;
-}
-
-.btn1 {
-    grid-area: btn1;
-}
-
-.btn2 {
-    grid-area: btn2;
-}
-
-.btn3 {
-    grid-area: btn3;
-}
-
-.btn4 {
-    grid-area: btn4;
-}
-
-.btn-rounds {
-    background-color: white;
-    border-radius: 50px;
-    margin: 10px;
-    padding: 10px 40px;
-    font-size: 1.5rem;
-    width: 500px;
+    width: 80%;
+    margin: 8vw 0;
 }
 
 #controls-container {
@@ -59,15 +14,9 @@
 
 #btnPrev,
 #btnNext {
-    width: 120px;
     display: none;
 }
 
-#btnPrev:hover,
-#btnNext:hover {
-    background-color: #B7B7FD;
-}
-
 .answer_selected {
-    background-color: #B7B7FD;
+    background-color: #cfcff0;
 }

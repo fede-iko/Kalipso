@@ -1,32 +1,21 @@
-#end-container{
-    position:relative;
-    display:flex;
+#end-container {
+    position: relative;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    margin: 150px 0;
 }
-
-#resultTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-
-#resultPoints {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
 
 #viewResultsBtn,
 #playAgainBtn {
     width: max-content;
 }
 
-.good-result{
-    color:green;
+.good-result {
+    color: green;
 }
 
-.bad-result{
-    color:red;
+.bad-result {
+    color: red;
 }

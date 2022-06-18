@@ -22,7 +22,6 @@ body {
     justify-content: stretch;
     align-items: center;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
     color: var(--primary);
     text-align: center;
     background: url("../../assets/bg-image.jpg") no-repeat center center fixed;
@@ -35,12 +34,6 @@ body {
 
 .title {
     margin: 100px 0;
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-.smaller_title {
-    font-size: 2.5rem;
 }
 
 .main-container {

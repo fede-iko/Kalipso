@@ -1,8 +1,10 @@
 .primary-button {
-    background: var(--btn-back);
-    background: var(--linear-back);
-    padding: 10px 40px;
-    box-sizing: border-box;
+    background-color: white;
     border-radius: 50px;
-    margin: 50px auto;
+}
+
+.primary-button:hover,
+.primary-button:focus {
+    background-color: #B7B7FD;
+    outline: none;
 }

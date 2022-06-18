@@ -11,13 +11,16 @@
     color: var(--primary);
     outline: 0;
     border-width: 0 0 4px;
-    border-color: #333;
+    border-color: rgb(118, 118, 118);
     background: transparent;
-    font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     display: inline;
     z-index: 0;
+}
+
+.user_name:focus {
+    border-color: #333;
 }
 
 .user_name::placeholder {
@@ -26,7 +29,9 @@
 
 .submit_name {
     display: none;
-    position: absolute;
-    background-color: transparent;
-    top: 50px;
+}
+
+.submit_name::selection,
+.submit_name:focus {
+    outline: none;
 }
