@@ -1,0 +1,29 @@
+.bottonimenù{
+    position:absolute;
+    background-color: white;
+    border-radius:50px;
+    margin:10px;
+    padding: 10px 40px;
+    width:35%;
+    height:8%;
+    font-size:120%;
+}
+.bottonimenù:active{
+    background-color:#B7B7FD;
+}
+#nuovapartita{
+    top:26%;
+    left:32%;
+}
+#istruzioni{
+    top:38%;
+    left:32%;
+}
+#cambiasfondo{
+    top:50%;
+    left:32%;
+}
+#chisiamo{
+    top:62%;
+    left:32%;
+}
