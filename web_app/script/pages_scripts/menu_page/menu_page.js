@@ -26,4 +26,10 @@ $(document).ready(function() {
         //OPEN MODAL
     });
 
+    $(".carousel-item").unbind().on("click", function(e) {
+        console.log(e);
+        $("body").css("background", "url(" + e.currentTarget.childNodes[1].attributes[0].nodeValue + ")");
+        $("body").css("background-size", "cover");
+        $("body").css("background-repeat", "no-repeat");
+    });
 });
