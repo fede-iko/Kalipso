@@ -1,0 +1,46 @@
+<div id="menu-container" class="d-flex flex-column align-self-center row">
+    <div class="title fw-bold h1" id="title"></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="start-btn">Gioca</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="instruction-btn" data-bs-toggle="modal" data-bs-target="#instructionsModal">Istruzioni</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal">Impostazioni</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="logout-btn">Esci</button></div>
+</div>
+
+<!-- Instructions Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="Instructions Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Instructions Modal">ISTRUZIONI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Il gioco è semplice cazzo
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="Settings Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Settings Modal">IMPOSTAZIONI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                MODIFICA SFONDO
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salva modifiche</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./script/pages_scripts/menu_page/menu_page.js"></script>

@@ -2,6 +2,10 @@ function loadUserNameForm() {
     $(".main-container").load("./src/user_name_form.html");
 }
 
+function loadMenuPage() {
+    $(".main-container").load("./src/menu_page.html");
+}
+
 function loadRoundsPage() {
     $(".main-container").load("./src/rounds_page.html");
 }

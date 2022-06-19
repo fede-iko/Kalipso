@@ -17,7 +17,7 @@ function getData() {
         //IF THERE IS AN ERROR, IT'S SHOWED IN THE SCREEN
         error: function() {
             $msg = "Connection error! Please try again later.";
-            $("#loading-container").html($msg);
+            $("#loader-container").html("<div class='fw-bold h1'>" + $msg + "</div><div><a href='index.html' class='link-dark h2'>Ricarica la pagina</a></div>");
             throw new Error($msg);
         },
         //WHEN THE DATA IS FETCHED, THE LOADING SCREEN IS REMOVED AND THE GAME IS STARTED
@@ -54,6 +54,7 @@ function createAnswers(answers) {
 }
 
 $(document).ready(function() {
+    $("#loader-container").remove();
     game_start();
 });
 
@@ -104,9 +105,9 @@ function getAnswersHTML(answers) {
     answers.forEach(function(answer) {
         var selectedClass = "";
         if (isAnswered()) {
-            selectedClass = userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText][0] == answer.answerText ? "answer_selected" : "";
+            selectedClass = userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText][1] == answer.answerText ? "answer_selected" : "";
         }
-        answersTexts += "<div class='col-12 col-md-6 btn" + btnCount + " mt-5'><button id='btn" + btnCount + "' class='primary-button " + selectedClass + " h4 p-2 w-100'>" + answer.answerText + "</button></div>";
+        answersTexts += "<div class='col-10 col-md-6 mx-auto btn" + btnCount + " mt-5'><button id='btn" + btnCount + "' class='primary-button " + selectedClass + " h4 p-2 w-100'>" + answer.answerText + "</button></div>";
         btnCount++;
     });
     answersTexts += "</div>";
@@ -130,7 +131,6 @@ function game_start() {
         sentencesContainer = new SentencesContainer(sessionSentencesContainer['sentences']);
         sentencesContainer.currentSentence = sessionSentencesContainer["currentSentence"];
 
-        $("#loading-container").remove();
         showSentence();
     }
 

@@ -3,8 +3,12 @@
     border-radius: 50px;
 }
 
-.primary-button:hover,
-.primary-button:focus {
+.primary-button:hover {
     background-color: #B7B7FD;
+    outline: none;
+}
+
+.primary-button:focus {
+    background-color: rgb(187, 187, 187);
     outline: none;
 }

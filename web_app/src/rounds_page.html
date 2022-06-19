@@ -1,11 +1,16 @@
-<div id='loading-container'>Loading...</div>
-<div id="round-page-container">
+<div class="position-absolute top-50 start-50 translate-middle" id="loader-container">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div id="round-page-container" class="d-flex flex-column align-items-center mt-5 py-5 align-self-center col-10">
     <div id="contents-container">
 
     </div>
-    <div id="controls-container">
-        <button id="btnPrev" class="primary-button h4 px-5 py-2 m-2 w-100 mt-5"><i class="fa-solid fa-arrow-left"></i></button>
-        <button id="btnNext" class="primary-button h4 px-5 py-2 m-2 w-100 mt-5"><i class="fa-solid fa-arrow-right"></i></button>
+    <div id="controls-container" class="d-flex flex-row">
+        <button id="btnPrev" class="primary-button h4 px-5 py-2 m-2 mt-5"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="btnNext" class="primary-button h4 px-5 py-2 m-2 mt-5"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
 
