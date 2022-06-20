@@ -1,3 +1,7 @@
-.carousel-item:hover {
-    cursor: pointer;
+.bgimages-container img {
+    width: 150px;
+    height: 100px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 10px;
 }

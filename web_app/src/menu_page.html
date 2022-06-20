@@ -14,7 +14,19 @@
                 <h5 class="modal-title" id="Instructions Modal">ISTRUZIONI</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-start">
+                <p>
+                    <strong>1.</strong> Per iniziare a giocare, clicca sul pulsante "Gioca".
+                </p>
+                <p>
+                    <strong>2.</strong> Clicca sulla risposta che ritieni giusta.
+                </p>
+                <p>
+                    <strong>3.</strong> Per passare ad un round successivo devi obbligatoriamente scegliere una risposta.
+                </p>
+                <p>
+                    <strong>4.</strong> Puoi scorrere avanti e indietro tra i round con i comandi a schermo o con le freccette da tastiera.
+                </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
@@ -25,46 +37,24 @@
 
 <!-- Settings Modal -->
 <div class="modal fade w-100" id="settingsModal" tabindex="-1" aria-labelledby="Settings Modal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="Settings Modal">IMPOSTAZIONI</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body row">
 
                 <!-- SETTINGS CONTAINER -->
-                <div class="row">
-                    <div id="carouselExampleIndicators" class="carousel slide col-8 mx-auto" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="./assets/bg-images/bg-sky.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./assets/bg-images/bg-lands.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./assets/bg-images/bg-hills.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./assets/bg-images/bg-creation.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                <div class="h6 fw-900">Cambia lo sfondo</div>
+
+                <div class="d-flex flex-row flex-wrap justify-content-center bgimages-container col-12">
                 </div>
 
-
                 <div class="modal-footer">
+                    <p>Per salvare le impostazioni cliccare su "Salva modifiche". Le modifiche andranno perse alla chiusura della pagina.</p>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salva modifiche</button>
+                    <button type="button" class="btn btn-primary" id="settingsSave" data-bs-dismiss="modal">Salva modifiche</button>
                 </div>
             </div>
         </div>

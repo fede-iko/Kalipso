@@ -17,7 +17,6 @@ body {
     font-family: 'Roboto', sans-serif;
     color: var(--primary);
     text-align: center;
-    background: url("../../assets/bg-images/bg-sky.jpg") no-repeat center center fixed;
     background-size: cover;
     position: relative;
     margin: 0;
