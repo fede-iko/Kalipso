@@ -7,11 +7,13 @@ function getGoodAnswersId() {
         method: "GET",
         async: false,
         success: function(response) {
+            $("#loader-container").remove();
+            $("#end-container").fadeTo("slow", 1);
             goodAnswersId.push(...response);
         },
         error: function() {
             $msg = "Connection error! Please try again later.";
-            $(".main-container").html($msg);
+            $("#loader-container").html("<div class='fw-bold h1'>" + $msg + "</div><div><a href='index.html' class='link-dark h2'>Ricarica la pagina</a></div>");
             throw new Error($msg);
         }
     });

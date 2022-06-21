@@ -24,7 +24,6 @@ function getData() {
         complete: function() {
             //IF THERE IS AN ERROR, THE GAME IS NOT STARTED
             if (sentencesContainer != null) {
-                $("#loading-container").remove();
                 sentencesContainer.shuffleSentences();
                 sentencesContainer.shuffleAnswers();
                 showSentence();
@@ -54,7 +53,6 @@ function createAnswers(answers) {
 }
 
 $(document).ready(function() {
-    $("#loader-container").remove();
     game_start();
 });
 
@@ -165,6 +163,7 @@ function isAnswered() {
 
 //SHOW SENTENCE, IT'S CALLED EVERYTIME THE NEXT BTN IS PRESSED
 function showSentence() {
+    $("#loader-container").remove();
     sessionStorage.setItem("sentencesContainer", JSON.stringify(sentencesContainer));
 
     //IF THE CURRENT SENTENCE IS THE LAST ONE
