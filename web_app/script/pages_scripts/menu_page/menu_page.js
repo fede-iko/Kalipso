@@ -65,7 +65,7 @@ function loadModalBackgroundsImagesChoices() {
             image.attr("src", imageUrl);
             imageLabel.append(image);
         } else {
-            imageLabel.text("Nessuna immagine");
+            imageLabel.html("<h5>Nessuna immagine</h5>");
         }
 
         bgImageDiv.append(imageLabel);
