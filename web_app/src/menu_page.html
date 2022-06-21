@@ -1,0 +1,66 @@
+<div id="menu-container" class="d-flex flex-column align-self-center row">
+    <div class="title fw-bold h1" id="title"></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="start-btn">Gioca</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="instruction-btn" data-bs-toggle="modal" data-bs-target="#instructionsModal">Istruzioni</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="settings-btn" data-bs-toggle="modal" data-bs-target="#settingsModal">Impostazioni</button></div>
+    <div><button class="primary-button h3 p-2 px-5 my-3 col-12" id="logout-btn">Esci</button></div>
+</div>
+
+<!-- Instructions Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="Instructions Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Instructions Modal">ISTRUZIONI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start">
+                <p>
+                    <strong>1.</strong> Per iniziare a giocare, clicca sul pulsante "Gioca".
+                </p>
+                <p>
+                    <strong>2.</strong> Clicca sulla risposta che ritieni giusta.
+                </p>
+                <p>
+                    <strong>3.</strong> Per passare ad un round successivo devi obbligatoriamente scegliere una risposta.
+                </p>
+                <p>
+                    <strong>4.</strong> Puoi scorrere avanti o indietro tra i round con i comandi a schermo o con le freccette da tastiera.
+                </p>
+                <p>
+                    <strong>5.</strong> Al termine del gioco puoi visualizzare i risultati dei vari round.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal fade w-100" id="settingsModal" tabindex="-1" aria-labelledby="Settings Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Settings Modal">IMPOSTAZIONI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+
+                <!-- SETTINGS CONTAINER -->
+                <div class="h6 fw-900">Cambia lo sfondo</div>
+
+                <div class="d-flex flex-row flex-wrap justify-content-center bgimages-container col-12">
+                </div>
+
+                <div class="modal-footer">
+                    <p>Per salvare le impostazioni cliccare su "Salva modifiche". Le modifiche andranno perse alla chiusura della pagina.</p>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-primary" id="settingsSave" data-bs-dismiss="modal">Salva modifiche</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./script/pages_scripts/menu_page/menu_page.js"></script>

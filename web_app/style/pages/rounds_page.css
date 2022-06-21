@@ -1,17 +1,3 @@
-#round-page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 8vw 0;
-}
-
-#controls-container {
-    display: flex;
-    justify-content: space-between;
-}
-
 #btnPrev,
 #btnNext {
     display: none;

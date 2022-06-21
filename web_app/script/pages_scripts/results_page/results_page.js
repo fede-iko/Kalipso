@@ -26,22 +26,20 @@ function loadResults() {
         pRoundNumber.addClass("round-number h2 fw-800 mb-4");
         pRoundNumber.text("Round " + roundCounter);
 
-        let pRoundText = $("<div></div>");
+        let pRoundText = $("<span></span>");
         pRoundText.addClass("round-result h4");
-        pRoundText.text(sentenceText + "... " + answer[1]);
 
-        let pSymbol = $("<span></span>");
-        pSymbol.addClass("result-symbol");
+        let roundText = sentenceText + "... " + answer[1];
+
         if (answer[2]) {
-            pSymbol.addClass("good-answer");
-            pSymbol.append("<i class='fa-solid fa-check'></i>");
+            roundText += "<i class='fa-solid fa-check result-symbol good-answer d-inline'></i>";
         } else {
-            pSymbol.addClass("bad-answer");
-            pSymbol.append("<i class='fa-solid fa-x'></i>");
+            roundText += "<i class='fa-solid fa-x result-symbol bad-answer d-inline'></i>";
         }
 
+        pRoundText.html(roundText);
+
         divResult.append(pRoundNumber);
-        pRoundText.append(pSymbol);
         divResult.append(pRoundText);
         roundCounter++;
         $("#results-container").append(divResult);

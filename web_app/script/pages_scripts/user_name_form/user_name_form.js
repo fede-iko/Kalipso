@@ -1,11 +1,13 @@
 var userName;
 
 $(document).ready(function() {
-    //IF THE USERNAME IS ALREADY INSERTED IN THE SESSION STORAGE LOAD THE ROUNDS PAGE
+    //IF THE USERANSWERS SESSION IS SET MEANS THAT THE USER HAS ALREADY ANSWERED THE SENTENCES
     if (sessionStorage.getItem("username")) {
         $("#user_name").val(sessionStorage["username"]);
         name_inserted();
     }
+
+    $("#loader-container").remove();
 
     //USER TYPED SOMETHING
     $("#user_name").unbind().on("input", function() {
@@ -53,12 +55,7 @@ function name_inserted() {
     sessionStorage.setItem("username", $("#user_name").val());
     userName = $("#user_name").val();
 
-    //NEEDS TO BE FIXED
-    // $(".title").addClass("smaller_title");
-    // $(".title").text("Buona fortuna " + toTitleCase(userName) + "!");
-    $(".title").remove();
-
     $("#user-input-container").remove();
 
-    loadRoundsPage();
+    loadMenuPage();
 }

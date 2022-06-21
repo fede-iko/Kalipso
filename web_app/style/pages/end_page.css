@@ -1,12 +1,3 @@
-#end-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin: 150px 0;
-}
-
 #viewResultsBtn,
 #playAgainBtn {
     width: max-content;

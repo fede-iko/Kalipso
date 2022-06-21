@@ -51,11 +51,11 @@ $(document).ready(function() {
     showResult();
 
     //PLAY AGAIN EVENT LISTENER
-    $("#playAgainBtn").unbind().on("click", function() {
+    $("#backToMenu").unbind().on("click", function() {
         sessionStorage.removeItem("sentencesContainer");
         sessionStorage.removeItem("userAnswers");
         $("#end-container").remove();
-        loadRoundsPage();
+        loadMenuPage();
     });
 
     //BACK TO HOME EVENT LISTENER
