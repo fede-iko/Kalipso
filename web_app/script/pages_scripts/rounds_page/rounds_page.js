@@ -105,7 +105,7 @@ function getAnswersHTML(answers) {
         if (isAnswered()) {
             selectedClass = userAnswers[sentencesContainer.sentences[sentencesContainer.currentSentence].sentenceText][1] == answer.answerText ? "answer_selected" : "";
         }
-        answersTexts += "<div class='col-10 col-md-6 mx-auto btn" + btnCount + " mt-5'><button id='btn" + btnCount + "' class='primary-button " + selectedClass + " h4 p-2 w-100'>" + answer.answerText + "</button></div>";
+        answersTexts += "<div class='col-10 col-md-6 mx-auto btn" + btnCount + " mt-3 mt-md-5'><button id='btn" + btnCount + "' class='primary-button " + selectedClass + " h4 p-2 w-100'>" + answer.answerText + "</button></div>";
         btnCount++;
     });
     answersTexts += "</div>";
