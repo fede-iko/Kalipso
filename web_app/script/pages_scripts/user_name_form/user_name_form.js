@@ -19,9 +19,9 @@ $(document).ready(function() {
             $("#user_name").css("color", "red");
             $("#submit_name").hide();
 
-            var msg = "<div class='h5 my-5 mx-auto text-start'><p>Username invalid</p>" +
-                "<ul><li>Username must be at least 3 characters long</li>" +
-                "<li>Username can only container letters and numbers</li></ul></div>";
+            var msg = "<div class='h5 my-5 mx-auto text-start'><p>Username non valido:</p>" +
+                "<ul><li>Deve avere almeno tre caratteri</li>" +
+                "<li>Può contenere solo caratteri alfanumerici</li></ul></div>";
             $(".alert-container").html(msg);
         }
     });
