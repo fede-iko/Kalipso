@@ -153,6 +153,7 @@ public class ApplicationMain {
 	
 	public static void exitProgram(String msg) {
 		out(msg);
+		in();
 		System.exit(0);
 	}
 	

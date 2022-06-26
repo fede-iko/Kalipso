@@ -14,9 +14,15 @@ $(document).ready(function() {
         if (isValidUsername()) {
             $("#user_name").css("color", "var(--primary)");
             $("#submit_name").show();
+            $(".alert-container").empty();
         } else {
             $("#user_name").css("color", "red");
             $("#submit_name").hide();
+
+            var msg = "<div class='h5 my-5 mx-auto text-start'><p>Username invalid</p>" +
+                "<ul><li>Username must be at least 3 characters long</li>" +
+                "<li>Username can only container letters and numbers</li></ul></div>";
+            $(".alert-container").html(msg);
         }
     });
 
@@ -47,7 +53,7 @@ function toTitleCase(str) {
 //RETURN TRUE IF THE USERNAME IS VALID
 function isValidUsername() {
     var usr = $("#user_name").val();
-    return /^[a-zA-Z0-9]+$/.test(usr)
+    return /^[a-zA-Z0-9]{3,}$/.test(usr)
 }
 
 //VALID USER AND LOAD ROUNDS
