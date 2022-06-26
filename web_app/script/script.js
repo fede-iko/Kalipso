@@ -4,6 +4,7 @@ $(document).ready(function() {
     loadUserNameForm();
 });
 
+//LOAD THE RIGHT BACKGROUND
 function loadRightBackground() {
 
     if (sessionStorage.getItem("settings")) {
@@ -15,5 +16,5 @@ function loadRightBackground() {
     }
     $("body").css("background-size", "cover");
     $("body").css("background-repeat", "no-repeat");
-    $("body").css("background-attachment","fixed");
+    $("body").css("background-attachment", "fixed");
 }
