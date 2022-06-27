@@ -102,6 +102,7 @@ function createRadioEventHandler(id) {
         $("body").css("background", "url(" + src + ")");
         $("body").css("background-size", "cover");
         $("body").css("background-repeat", "no-repeat");
+        $("body").css("background-attachment", "fixed");
         settings.bgImage = src;
     });
 }
